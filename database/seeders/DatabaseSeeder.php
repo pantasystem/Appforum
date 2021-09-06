@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\App;
 use App\Models\Topic;
 use App\Models\Content;
+use App\Models\Post;
 
 class DatabaseSeeder extends Seeder
 {
@@ -37,6 +38,15 @@ class DatabaseSeeder extends Seeder
             });
         })->collapse();
 
+        $posts = $topics->map(function($topic) use ($users){
+            return $users->map(function($user) use ($topic) {
+                $post = Post::factory()->make();
+                $post->topic()->associate($topic);
+                $post->user()->associate($user);
+                $post->save();
+                return $post;
+            });
+        })->collapse();
         
     }
 }
