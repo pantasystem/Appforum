@@ -16,7 +16,8 @@ class Content extends Model
     {
         return [
             'type' => ['required', Rule::in(['multiline', 'singleline'])],
-            'text' => ['required']
+            'text' => ['required'],
+            'name' => ['required'],
         ];
     }
 

@@ -21,6 +21,7 @@ class CreateAppsTable extends Migration
             $table->string('icon_path');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->text('text')->nullable();
         });
     }
 
