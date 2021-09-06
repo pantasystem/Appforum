@@ -7,7 +7,9 @@
 @stop
 
 @section('content')
-    <p>ここがコンテンツ部分です</p>
+    <div>
+        ここにアプリを一覧表示
+    </div>
 @stop
 
 @section('css')
