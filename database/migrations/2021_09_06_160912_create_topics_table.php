@@ -18,6 +18,8 @@ class CreateTopicsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('app_id');
+            $table->foreign('app_id')->references('id')->on('apps')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
