@@ -13,22 +13,34 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = ['text'];
-    
+
+    /**
+     * 投稿先トピック
+     */
     public function topic()
     {
         return $this->belongsTo(Topic::class, 'topic_id');
     }
 
+    /**
+     * 投稿者
+     */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * 返信先へのリレーション
+     */
     public function replyTo()
     {
         return $this->belongsTo(Post::class, 'parent_id');
     }
 
+    /**
+     * この投稿への返信
+     */
     public function replies()
     {
         return $this->hasMany(Post::class, 'parent_id');
