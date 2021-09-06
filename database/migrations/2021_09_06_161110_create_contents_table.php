@@ -18,7 +18,7 @@ class CreateContentsTable extends Migration
             $table->timestamps();
             $table->string('type');
             $table->text('text');
-            $table->unsingedBigInteger('topic_id');
+            $table->unsignedBigInteger('topic_id');
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
             
         });

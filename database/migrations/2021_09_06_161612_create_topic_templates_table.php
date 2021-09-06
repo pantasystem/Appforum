@@ -18,7 +18,7 @@ class CreateTopicTemplatesTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->unsingedBigInteger('app_id');
+            $table->unsignedBigInteger('app_id');
             $table->foreign('app_id')->references('id')->on('apps')->onDelete('cascade');
         });
     }

@@ -16,7 +16,7 @@ class CreateLabelsTable extends Migration
         Schema::create('labels', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->unsingedBigInteger('app_id');
+            $table->unsignedBigInteger('app_id');
             $table->string('name');
             $table->string('color');
             $table->foreign('app_id')->references('id')->on('apps');

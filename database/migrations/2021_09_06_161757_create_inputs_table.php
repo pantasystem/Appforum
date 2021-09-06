@@ -23,7 +23,7 @@ class CreateInputsTable extends Migration
 
             // 必須であるか
             $table->boolean('is_required');
-            $table->unsingedBigInteger('topic_template_id');
+            $table->unsignedBigInteger('topic_template_id');
 
             // 入力タイプを表す
             $table->string('type');
