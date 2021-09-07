@@ -20,7 +20,15 @@
         @csrf
         <div class="card">
             <div class="card-header">
-                テンプレート名
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                    テンプレート名
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" href="{{ route('apps.topic-templates.inputs.create', ['appId' => $app->id, 'templateId' => $template->id])}}">入力を追加する</a>
+
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -56,11 +64,24 @@
             
         </div>
     </form>
-    
-    <a class="btn btn-primary" href="{{ route('apps.topic-templates.inputs.create', ['appId' => $app->id, 'templateId' => $template->id])}}">入力を追加する</a>
+    <div>
+    <h2 class="mt-2">
+        入力一覧
+    </h2>
     @foreach($template->inputs as $input)
+        
+        <div class="card">
+            <div class="card-header">
+                {{$input->name}}
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
         {{$input}}
     @endforeach
+    </div>
+    
 </div>
 @stop
 
