@@ -15,18 +15,28 @@
 
 @section('content')
 <div clsas="topic-templates.edit.form">
-    <form method="POST" action="{{ route('apps.topic-templates.update', ['appId' => $app->id, 'templateId' => $template->id])}}">
-        @method('put')
-        @csrf
+    
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                    テンプレート名
+                    テンプレート編集@if($template->is_draft)(公開済み) @else (下書き) @endif
                     </div>
-                    
+                    @if(!$template->is_draft)
+                    <form form method="POST" action="{{ route('apps.topic-templates.update', ['appId' => $app->id, 'templateId' => $template->id])}}">
+                        @csrf
+                        @method('put')
+                        <input type="hidden" name="name" value="{{$template->name}}">
+                        <input type="hidden" name="description" value="{{$template->description}}">
+                        <input type="hidden" name="is_draft" value="1">
+                        <button type="submit" class="btn btn-primary">テンプレートを公開する</button>
+                    </form>
+                    @endif
                 </div>
             </div>
+            <form method="POST" action="{{ route('apps.topic-templates.update', ['appId' => $app->id, 'templateId' => $template->id])}}">
+            @method('put')
+            @csrf
             <div class="card-body">
                 <div class="form-group">
                     <label for="topic-template-name">テンプレート名</label>
@@ -58,9 +68,10 @@
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">保存</button>
             </div>
+            </form>
+
             
         </div>
-    </form>
     <div class="mt-2">
         <div class="d-flex justify-content-between align-items-center mb-2">
 
