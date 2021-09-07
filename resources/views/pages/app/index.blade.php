@@ -9,16 +9,23 @@
 @section('content')
     <div>
 
-        @foreach($data as $record)
-        <div style="box-sizing: border-box; background-color: #ccc; padding: 15px; margin: 20px; border-radius: 10px;">
-            <h3>{{$record->name}}</h3>
-            <p>アプリID {{$record->id}}</p>
-            <p>作成者ID {{$record->user_id}}</p>
-            <p>作成日 {{$record->created_at}}</p>
 
-            <img src="{{$record->icon_path}}" width="200px">
+        <div class="container-fluid">
+            <div class="row">
+                @foreach($data as $record)
+                <div class="col-sm-6 col-lg-4">
+                    <div style="background-color: #ccc; margin: 15px; padding: 15px; border-radius: 10px;">
+                        <h3>{{$record->name}}</h3>
+                        <p>アプリID {{$record->id}}</p>
+                        <p>作成者ID {{$record->user_id}}</p>
+                        <p>作成日 {{$record->created_at}}</p>
+
+                        <img src="{{$record->icon_path}}" width="100px">
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
-        @endforeach
 
     </div>
 @stop
