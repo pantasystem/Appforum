@@ -56,40 +56,11 @@
             
         </div>
     </form>
-    <div class="topic-templates-input-forms">
-        
-        <div class="card">
-            <div class="card-header">
-                <label for="topic-templates-input-0-name">入力名</label>
-                <input type="text" class="form-control" id="topic-templates-input-0-name">
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="topic-templates-input-0-description">入力についての説明</label>
-                    <textarea class="form-control"></textarea>
-
-                </div>
-                <div class="form-group">
-                    <label for="topic-templates-input-0-type">入力タイプ</label>
-                    <select class="custom-select">
-                        <option value="singleline">単数行入力</option>
-                        <option value="multiline">複数行入力</option>
-                    </select>
-                </div>
-                <div clsas="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            Default checkbox
-                        </label>
-                        
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-    <button type="button" class="btn btn-primary topic-templates-add-input">入力を追加する</button>
+    
+    <a class="btn btn-primary" href="{{ route('apps.topic-templates.inputs.create', ['appId' => $app->id, 'templateId' => $template->id])}}">入力を追加する</a>
+    @foreach($template->inputs as $input)
+        {{$input}}
+    @endforeach
 </div>
 @stop
 

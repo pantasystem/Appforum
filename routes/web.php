@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopicTemplateController;
+use App\Http\Controllers\InputTemplateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::get('/apps/{appId}/topic-templates/create', [TopicTemplateController::cla
 Route::post('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'store'])->name('apps.topic-templates.store');
 Route::get('/apps/{appId}/topic-templates/{templateId}/edit', [TopicTemplateController::class, 'edit'])->name('apps.topic-templates.edit');
 Route::put('/apps/{appId}/topic-templates/{templateId}', [TopicTemplateController::class, 'update'])->name('apps.topic-templates.update');
+Route::post('/apps/{appId}/topic-templates/{templateId}/inputs', [InputTemplateController::class, 'store'])->name('apps.topic-templates.inputs.store');
+Route::get('/apps/{appId}/topic-templates/{templateId}/inputs/create', [InputTemplateController::class, 'create'])->name('apps.topic-templates.inputs.create');
