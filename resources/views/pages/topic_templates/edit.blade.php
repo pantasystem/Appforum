@@ -28,7 +28,7 @@
                         @method('put')
                         <input type="hidden" name="name" value="{{$template->name}}">
                         <input type="hidden" name="description" value="{{$template->description}}">
-                        <input type="hidden" name="is_draft" value="1">
+                        <input type="hidden" name="is_draft" value="0">
                         <button type="submit" class="btn btn-primary">テンプレートを公開する</button>
                     </form>
                     @endif

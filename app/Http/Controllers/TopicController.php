@@ -19,11 +19,11 @@ class TopicController extends Controller
     {
         $app = App::findOrFail($appId);
         $templateId = $request->input('templateId');
-        if($templateId) {
+        if(!$templateId) {
             return redirect()->route('apps.topic-templates', ['appId' => $appId]);
         }
 
-        $template = $app->topicTemplates()->where('is_draft', false)->findOrFail($templateId);
+        $template = $app->topicTemplates()->where('is_draft', false)->with('inputs')->findOrFail($templateId);
         return view('pages.topic.create', compact('template'));
     }
 }
