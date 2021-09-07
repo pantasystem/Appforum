@@ -15,6 +15,8 @@
             <p>アプリID {{$record->id}}</p>
             <p>作成者ID {{$record->user_id}}</p>
             <p>作成日 {{$record->created_at}}</p>
+
+            <img src="{{$record->icon_path}}" width="200px">
         </div>
         @endforeach
 
