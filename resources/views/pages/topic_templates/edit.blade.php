@@ -24,10 +24,7 @@
                     <div>
                     テンプレート名
                     </div>
-                    <div>
-                        <a class="btn btn-primary" href="{{ route('apps.topic-templates.inputs.create', ['appId' => $app->id, 'templateId' => $template->id])}}">入力を追加する</a>
-
-                    </div>
+                    
                 </div>
             </div>
             <div class="card-body">
@@ -64,22 +61,37 @@
             
         </div>
     </form>
-    <div>
-    <h2 class="mt-2">
-        入力一覧
-    </h2>
-    @foreach($template->inputs as $input)
+    <div class="mt-2">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+
+            <h2>
+                入力一覧
+            </h2>
+            <div>
+                <a class="btn btn-primary" href="{{ route('apps.topic-templates.inputs.create', ['appId' => $app->id, 'templateId' => $template->id])}}">入力を追加する</a>
+
+            </div>
+        </div>
+        @foreach($template->inputs as $input)
         
         <div class="card">
             <div class="card-header">
                 {{$input->name}}
+                @if($input->is_required) :※必須 @endif
             </div>
             <div class="card-body">
+                <div>
+                入力種別:{{$input->type}}
+                </div>
+
+                <div>
+                    説明:
+                    {{$input->description}}
+                </div>
 
             </div>
         </div>
-        {{$input}}
-    @endforeach
+        @endforeach
     </div>
     
 </div>
