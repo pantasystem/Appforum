@@ -11,4 +11,4 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /composer
 
 ENV PATH $PATH:/usr/bin/composer
-WORKDIR /var/www/
+WORKDIR /var/www/html
