@@ -8,7 +8,16 @@
 
 @section('content')
     <div>
-        ここにアプリを一覧表示
+
+        @foreach($data as $record)
+        <div style="box-sizing: border-box; background-color: #ccc; padding: 15px; margin: 20px; border-radius: 10px;">
+            <h3>{{$record->name}}</h3>
+            <p>アプリID {{$record->id}}</p>
+            <p>作成者ID {{$record->user_id}}</p>
+            <p>作成日 {{$record->created_at}}</p>
+        </div>
+        @endforeach
+
     </div>
 @stop
 
