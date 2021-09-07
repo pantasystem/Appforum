@@ -28,7 +28,7 @@ class CreateInputTemplateRequest extends FormRequest
         return [
             'name' => ['required', 'max:25'],
             'description' => ['nullable', 'max:255'],
-            'type' => ['required', Rule::in(['multiline', 'singleine'])],
+            'type' => ['required', Rule::in(['multiline', 'singleline'])],
             'is_required' => ['required', Rule::in([0, 1])]
         ];
     }

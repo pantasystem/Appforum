@@ -42,7 +42,7 @@
                 </div>
                 
             </div>
-            <div class="card-footer">
+            <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary">保存</button>
             </div>
             
