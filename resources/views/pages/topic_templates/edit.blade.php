@@ -47,7 +47,7 @@
                     @enderror
                 </div>
                 <!-- 下書きの保存状態 -->
-                <input  value="{{(string)$template->is_draft}}" name="is_draft" class="@error('is_draft') is-invalid @enderror">
+                <input  type="hidden" value="{{(string)$template->is_draft}}" name="is_draft" class="@error('is_draft') is-invalid @enderror">
                 @error('is_draft')
                     <div class="invalid-feedback">
                         {{ $message }}
