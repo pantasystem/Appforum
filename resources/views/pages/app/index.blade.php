@@ -13,14 +13,12 @@
         <div class="container-fluid">
             <div class="row">
                 @foreach($data as $record)
-                <div class="col-sm-6 col-lg-4">
-                    <div style="background-color: #ccc; margin: 15px; padding: 15px; border-radius: 10px;">
-                        <h3>{{$record->name}}</h3>
-                        <p>アプリID {{$record->id}}</p>
-                        <p>作成者ID {{$record->user_id}}</p>
-                        <p>作成日 {{$record->created_at}}</p>
-
+                <div class="col-sm-6 col-xl-4">
+                    <div class="m-3 p-3 bg-secondary rounded-lg">
                         <img src="{{$record->icon_path}}" width="100px">
+                        <p class="h2">{{$record->name}}</p>
+                        <p>作成者ID : {{$record->user_id}}</p>
+                        <p>作成日 : {{$record->created_at}}</p>
                     </div>
                 </div>
                 @endforeach
