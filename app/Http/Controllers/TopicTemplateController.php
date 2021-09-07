@@ -7,9 +7,25 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\TopicTemplate;
 use App\Http\Requests\CreateTopicTemplateRequest;
 use App\Http\Requests\UpdateTopicTemplateRequest;
+use App\Models\App;
 
 class TopicTemplateController extends Controller
 {
+
+    public function index(Request $request, $appId) 
+    {
+        $select = $request->input('action') == 'select';
+        $app = App::findOrFail($appId);
+        $owner = Auth::check() && $app->user_id == Auth::id();
+        $templatesQuery =  $app->topicTemplates();
+
+        // オーナーではない場合は下書きを除外する
+        if(!$owner) {
+            $templatesQuery = $templatesQuery->where('is_draft', '=', false);
+        }
+        $templates = $templatesQuery->get();
+        return view('pages.topic_templates.index', compact('select', 'app', 'owner', 'templates'));
+    }
     
     public function create($appId)
     {
