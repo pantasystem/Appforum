@@ -13,6 +13,14 @@ class TopicTemplate extends Model
 
     protected $fillable = ['name', 'description'];
 
+    protected function rules()
+    {
+        return [
+            'name' => ['required', 'max:25'],
+            'description' => ['nullable', 'max:255'],
+        ];
+    }
+
     public function inputs()
     {
         return $this->hasMany(Input::class, 'topic_template_id');

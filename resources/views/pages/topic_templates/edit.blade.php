@@ -15,7 +15,8 @@
 
 @section('content')
 <div clsas="topic-templates.edit.form">
-    <form method="POST" action="{{ route('apps.topic-templates.store', ['appId' => $app->id])}}">
+    <form method="POST" action="{{ route('apps.topic-templates.update', ['appId' => $app->id, 'templateId' => $template->id])}}">
+        @method('put')
         @csrf
         <div class="card">
             <div class="card-header">
@@ -24,7 +25,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="topic-template-name">テンプレート名</label>
-                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="topic-template-name" value="{{old('name')}}">
+                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror" id="topic-template-name" value="{{old('name', $template->name)}}">
                     @error('name')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -33,13 +34,20 @@
                 </div>
                 <div class="form-group">
                     <label for="topic-template-description">テンプレートの説明</label>
-                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="topic-template-description">{{old('description')}}</textarea>
+                    <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="topic-template-description">{{old('description', $template->description)}}</textarea>
                     @error('description')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>  
                     @enderror
                 </div>
+                <!-- 下書きの保存状態 -->
+                <input  value="{{(string)$template->is_draft}}" name="is_draft" class="@error('is_draft') is-invalid @enderror">
+                @error('is_draft')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>  
+                    @enderror
                 
             </div>
             <div class="card-footer">
@@ -86,57 +94,10 @@
 @stop
 
 @section('css')
-    {{-- ページごとCSSの指定
-    <link rel="stylesheet" href="/css/xxx.css">
-    --}}
 @stop
 
 @section('js')
     <script>
-        const addButtons = document.getElementsByClassName('topic-templates-add-input');
-
-        //const forms = document.getElementsByClassName('topic-templates-inputs');
-        const formBase = document.getElementsByClassName('topic-templates-input-forms');
-
-        const createInput = (attributes) => {
-            const el = document.createElement('input');
-            el.id = attributes.id;
-            el.class = 'form-control';
-            el.type = 'text';
-            return el;
-        }
-
-        const addInputForm = (index) => {
-            const formDiv = document.createElement('div');
-            formDiv.className = 'card';
-
-            const header = document.createElement('div');
-            header.className = 'card-header';
-            header.appendChild(
-                createInput({
-                    id: `topic-templates-input-${index}-name`
-                }),
-            );
-            formDiv.appendChild(
-                header
-            );
-
-
-            const cardBody = document.createElement('div');
-
-
-            for(let i = 0; i < formBase.length; i ++) {
-                
-                formBase[i].appendChild(formDiv);
-            }
-            //formDiv.appendChild()
-        }
-        
-        for(let i = 0; i < addButtons.length; i ++) {
-            addButtons[i].addEventListener('click', e=> {
-                console.log(e);
-                addInputForm();
-            });
-        }
+      
     </script>
 @stop
