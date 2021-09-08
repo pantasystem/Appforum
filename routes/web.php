@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopicTemplateController;
 use App\Http\Controllers\InputTemplateController;
+use App\Http\Controllers\TopicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/apps/{appId}/topic-templates/{templateId}/inputs', [InputTemplateController::class, 'store'])->name('apps.topic-templates.inputs.store');
     Route::get('/apps/{appId}/topic-templates/{templateId}/inputs/create', [InputTemplateController::class, 'create'])->name('apps.topic-templates.inputs.create');
 });
-Route::get('apps/{appId}/topic-templates', [TopicTemplateController::class, 'index'])->name('apps.topic-templates.index');
+Route::get('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'index'])->name('apps.topic-templates.index');
+
+Route::get('/apps/{appId}/topics/create', [TopicController::class, 'create'])->name('apps.topics.create');
+Route::post('/apps/{appId}/topics', [TopicController::class, 'store'])->name('apps.topics.store');
