@@ -82,4 +82,12 @@ class TopicController extends Controller
         $queryInputs = $request->all();
         return view('pages.topic.create', compact('template', 'app', 'queryInputs'));
     }
+
+    public function show($appId, $topicId)
+    {
+        $app = App::findOrFail($appId);
+        $topic = $app->topics()->findOrFail($topicId);
+        $posts = $topic->posts()->withCount('children')->with('user')->whereNull('parent_id')->orderBy('id', 'asc')->get();
+        return $app;
+    }
 }
