@@ -21,7 +21,7 @@
             @if($content->type == 'singleline')
             <p>{{$content->text}}</p>
             @elseif($content->type == 'multiline')
-            <p>{{$content->text}}</p>
+            <x-markdown :text="$content->text"/>
             @else
             error
             @endif
