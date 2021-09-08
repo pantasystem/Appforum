@@ -21,3 +21,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/apps', [App\Http\Controllers\AppController::class, 'index'])->name('apps.index');
+
+Route::get('/apps/{app_id}/topics', [App\Http\Controllers\TopiclistContrller::class, 'index'])->name('topic');
