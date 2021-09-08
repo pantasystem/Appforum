@@ -86,8 +86,8 @@ class TopicController extends Controller
     public function show($appId, $topicId)
     {
         $app = App::findOrFail($appId);
-        $topic = $app->topics()->findOrFail($topicId);
+        $topic = $app->topics()->with('contents', 'user')->findOrFail($topicId);
         $posts = $topic->posts()->withCount('replies')->with('user')->whereNull('parent_id')->orderBy('id', 'asc')->get();
-        return $posts;
+        return view('pages.topic.show', compact('app', 'topic', 'posts'));
     }
 }
