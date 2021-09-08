@@ -16,8 +16,8 @@ class TopiclistContrller extends Controller
         //投稿一覧画面の表示
 
         //topicsテーブルに対してselect文を実行し、データを取得 id昇順
-        $topics = Topic::where('app_id',$app->id)->orderBy('id', 'asc') -> get();
+        $topics = Topic::with('user')->where('app_id',$app->id)->orderBy('id', 'desc')->get();
 
-        return view('topic', ['data' => $topics]);
+        return view('pages.topic.index', ['data' => $topics]);
     }
 }
