@@ -64,6 +64,8 @@ class TopicController extends Controller
 
             return $topic;
         });
+
+        // TODO: トピック詳細画面(投稿一覧画面)へ遷移する
         return $topic->load('contents');
     }
 
