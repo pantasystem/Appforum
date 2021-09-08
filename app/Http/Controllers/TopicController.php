@@ -20,6 +20,7 @@ class TopicController extends Controller
         $rules = [
             'title' => ['required', 'max:25']
         ];
+        $attributeNames = ['title' => 'タイトル'];
         foreach($template->inputs as $input) {
             $key = 'input-' . $input->id;
             $rule = [];
@@ -31,9 +32,14 @@ class TopicController extends Controller
             if($input->type == 'singleline') {
                 $rule[] = 'max:255';
             }
+            $attributeNames[$key] = $input->name;
             $rules[$key] = $rule;
         }
-        Validator::make($request->all(), $rules)->validate();
+        $validator = Validator::make($request->all(), $rules);
+        foreach($template->inputs as $input) {
+            $validator->setAttributeNames($attributeNames);
+        }
+        $validator->validate();
 
     }
 
