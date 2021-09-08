@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopicTemplateController;
 use App\Http\Controllers\InputTemplateController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,4 @@ Route::get('/apps/{appId}/topics/create', [TopicController::class, 'create'])->n
 Route::post('/apps/{appId}/topics', [TopicController::class, 'store'])->name('apps.topics.store');
 
 Route::get('/apps/{appId}/topics/{topicId}', [TopicController::class, 'show'])->name('apps.topics.show');
+Route::post('/apps/{appId}/topics/{topicId}', [PostController::class, 'store'])->name('apps.topics.posts.store');

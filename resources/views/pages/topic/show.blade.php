@@ -53,7 +53,8 @@
         @endforeach
     </div>
 
-    <form >
+    <form action="{{ route('apps.topics.posts.store', ['appId' => $app->id, 'topicId' => $topic->id])}}" method="POST">
+        @csrf
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
