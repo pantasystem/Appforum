@@ -45,4 +45,12 @@ class Post extends Model
     {
         return $this->hasMany(Post::class, 'parent_id');
     }
+
+    public function getUsernameAttribute()
+    {
+        if($this->user) {
+            return $this->user->username;
+        }
+        return '匿名ユーザー';
+    }
 }

@@ -10,24 +10,42 @@
 @stop
 
 @section('content')
-<div>
+<div class="pb-4">
     <div class="card">
-        <div class="card-header card-title">
-            {{ $topic->user_name ?? '匿名ユーザー' }}
-        </div>
+        <div class="card-header">{{$topic->username}}</div>
         <div class="card-body">
-        @foreach($topic->contents as $content)
-            <h3>{{$content->name}}</h3>
-            @if($content->type == 'singleline')
-            <p>{{$content->text}}</p>
-            @elseif($content->type == 'multiline')
-            <x-markdown :text="$content->text"/>
-            @else
-            error
-            @endif
-        @endforeach
+            @foreach($topic->contents as $content)
+            <div class="card">
+                <div class="card-header">
+                    {{ $content->name }}
+                </div>
+                <div class="card-body">
+                @if($content->type == 'singleline')
+                    {{$content->text}}
+                @elseif($content->type == 'multiline')
+                    <x-markdown :text="$content->text"/>
+                @else
+                    error
+                @endif
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
+
+    @foreach($posts as $post)
+    <div class="card">
+        <div class="card-header">
+            {{ $post->username }}
+        </div>
+        <div class="card-body">
+            <x-markdown :text="$post->text"/>
+        </div>
+    </div>
+    @endforeach
+
+            
+
     
 </div>
 @stop

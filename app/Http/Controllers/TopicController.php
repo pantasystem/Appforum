@@ -66,7 +66,7 @@ class TopicController extends Controller
         });
 
         // TODO: トピック詳細画面(投稿一覧画面)へ遷移する
-        return $topic->load('contents');
+        return redirect()->route('apps.topics.show', ['appId' => $appId, 'topicId' => $topic->id]);
     }
 
 
