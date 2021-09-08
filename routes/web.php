@@ -25,6 +25,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/apps', [App\Http\Controllers\AppController::class, 'index'])->name('apps.index');
 
+Route::get('/apps/{app}/topics', [App\Http\Controllers\TopiclistContrller::class, 'index'])->name('apps.topic.index');
+
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/apps/{appId}/topic-templates/create', [TopicTemplateController::class, 'create'])->name('apps.topic-templates.create');
     Route::post('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'store'])->name('apps.topic-templates.store');
@@ -37,3 +39,4 @@ Route::get('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'in
 
 Route::get('/apps/{appId}/topics/create', [TopicController::class, 'create'])->name('apps.topics.create');
 Route::post('/apps/{appId}/topics', [TopicController::class, 'store'])->name('apps.topics.store');
+
