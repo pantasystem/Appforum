@@ -53,10 +53,3 @@
 </div>    
 @stop
 
-@section('css')
-    
-@stop
-
-@section('js')
-    <script> console.log('ページごとJSの記述'); </script>
-@stop
