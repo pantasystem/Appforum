@@ -36,3 +36,4 @@ Route::group(['middleware' => ['auth']], function() {
 Route::get('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'index'])->name('apps.topic-templates.index');
 
 Route::get('/apps/{appId}/topics/create', [TopicController::class, 'create'])->name('apps.topics.create');
+Route::post('/apps/{appId}/topics', [TopicController::class, 'store'])->name('apps.topics.store');
