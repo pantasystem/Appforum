@@ -79,6 +79,7 @@ class TopicController extends Controller
         }
 
         $template = $app->topicTemplates()->where('is_draft', false)->with('inputs')->findOrFail($templateId);
-        return view('pages.topic.create', compact('template', 'app'));
+        $queryInputs = $request->all();
+        return view('pages.topic.create', compact('template', 'app', 'queryInputs'));
     }
 }

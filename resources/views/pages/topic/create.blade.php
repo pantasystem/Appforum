@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-header">トピックタイトル</div>
             <div class="card-body">
-                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{old('title')}}">
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{old('title', $queryInputs['title'] ?? '')}}">
                 @error('title')
                 <div class="invalid-feedback">
                     {{$message}}
@@ -30,9 +30,9 @@
                 <div class="form-group">
                 </div>
                 @if($input->type == 'singleline')
-                <input type="text" class="form-control @error('input-' . $input->id) is-invalid @enderror" name="input-{{ $input->id }}" value="{{ old('input-' . $input->id) }}">
+                <input type="text" class="form-control @error('input-' . $input->id) is-invalid @enderror" name="input-{{ $input->id }}" value="{{ old('input-' . $input->id, $queryInputs['input-' . $input->id] ?? '') }}">
                 @elseif($input->type == 'multiline')
-                <textarea class="form-control @error('input-' . $input->id) is-invalid @enderror" name="input-{{ $input->id }}">{{ old('input-' . $input->id) }}</textarea>
+                <textarea class="form-control @error('input-' . $input->id) is-invalid @enderror" name="input-{{ $input->id }}">{{ old('input-' . $input->id, $queryInputs['input-' . $input->id] ?? '') }}</textarea>
                 @else
                 error unknown
                 @endif
