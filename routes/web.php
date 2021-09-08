@@ -23,6 +23,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/apps', [App\Http\Controllers\AppController::class, 'index'])->name('apps.index');
+Route::get('/apps/{appId}', [App\Http\Controllers\AppController::class, 'show'])->name('apps.show');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/apps/{appId}/topic-templates/create', [TopicTemplateController::class, 'create'])->name('apps.topic-templates.create');
