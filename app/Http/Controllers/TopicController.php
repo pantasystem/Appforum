@@ -75,7 +75,7 @@ class TopicController extends Controller
         $app = App::findOrFail($appId);
         $templateId = $request->input('templateId');
         if(!$templateId) {
-            return redirect()->route('apps.topic-templates', ['appId' => $appId]);
+            return redirect()->route('apps.topic-templates.index', ['appId' => $appId]);
         }
 
         $template = $app->topicTemplates()->where('is_draft', false)->with('inputs')->findOrFail($templateId);
