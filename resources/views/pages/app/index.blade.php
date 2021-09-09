@@ -19,11 +19,11 @@
                         <img src="{{$app->header_image_path}}" width="100%" height="150">
                         <div class="row position-absolute ml-3" style="top: 100px">
                             <img src="{{$app->icon_path}}" width="80" height="80" class="bg-white">
-                            <h3 class="card-title h4 mt-auto">{{$app->name}}</h3>
+                            <h3 class="card-title h4 ml-1 mt-auto">{{$app->name}}</h3>
                         </div>
 
                         <div class="card-body pt-5">
-                            <p class="card-text text-muted mb-0">{{$app->user->username}}</p>
+                            <p class="card-text text-muted mb-1">{{$app->user->username}}</p>
                             <p class="card-text text-muted">{{$app->created_at}}</p>
                             <a href="/apps/{{$app->id}}" class="btn btn-primary">詳しく見る</a>
                         </div>
