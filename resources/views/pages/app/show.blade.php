@@ -22,7 +22,7 @@
                 <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">アプリ詳細</a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">トピック一覧</a>
+                <a href="/apps/{{$app->id}}/topics/" class="nav-link" id="profile-tab" data-bs-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">トピック一覧</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
