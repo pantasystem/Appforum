@@ -12,7 +12,7 @@
 
         <div class="container-fluid">
             <div class="row">
-                @foreach($apps as $app)
+                @foreach($data as $app)
                 <div class="col-sm-6 col-xl-4">
                     <div class="m-3 p-3 bg-secondary rounded-lg">
                         <img src="{{$app->icon_path}}" width="100px">
