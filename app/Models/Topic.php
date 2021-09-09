@@ -35,12 +35,4 @@ class Topic extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function getUsernameAttribute() 
-    {
-        if($this->user == null) {
-            return '匿名ユーザー';
-        }
-        return $this->user->username;
-    }
 }

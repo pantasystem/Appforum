@@ -14,6 +14,17 @@ class AppController extends Controller
         $apps = App::orderBy('id', 'desc')->get();
         
         //bladeテンプレートを呼び出し、データを渡す
-        return view('pages.app.index',['data'=>$apps]);
+        return view('pages.app.index',['apps'=>$apps]);
     }
+
+    public function show($appId) {
+
+        //該当するアプリの詳細情報を取得
+        $app = App::find($appId);
+
+        //bladeにデータを渡してWebページを表示
+        return view('pages.app.show',['app'=>$app]);
+
+    }
+
 }

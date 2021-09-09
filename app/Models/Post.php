@@ -12,7 +12,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['text',' parent_id'];
+    protected $fillable = ['text'];
 
     /**
      * 投稿先トピック
@@ -44,13 +44,5 @@ class Post extends Model
     public function replies()
     {
         return $this->hasMany(Post::class, 'parent_id');
-    }
-
-    public function getUsernameAttribute()
-    {
-        if($this->user) {
-            return $this->user->username;
-        }
-        return '匿名ユーザー';
     }
 }
