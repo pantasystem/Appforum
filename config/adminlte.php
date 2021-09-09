@@ -230,78 +230,90 @@ return [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
+            //'input_name' => 'keywrod'
         ],
         [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
+        // 横メニューの検索
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => '検索',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'ホーム',
+            'url' => '/home',
+            'can' => 'loggedin',
+            'icon' => 'fas fa-home'
         ],
         [
+            'text'  => 'アプリ・サービス',
+            'url' => '/apps',
+            'icon' => 'fab fa-app-store',
+        ],
+        [
+            'text' => '新着トピック',
+            'icon' => 'fas fa-comments',
+            'url' => '/pages',
+            'key' => 'new-topics'
+            
+        ],
+        [
+            'text' => 'お気に入りアプリ',
+            'icon' => 'fas fa-heart',
+            'url' => '/my/favorite-app',
+            'can' => 'loggedin',
+            'key' => 'favorite-apps'
+        ],
+        [
+            'text' => 'あなたのアプリ',
+            'icon' => 'fab fa-dev',
+            'url' => '/my/apps',
+            'can' => 'loggedin',
+            'key' => 'menu-my-apps',
+        ],
+        [
+            'text' => 'あなたのトピック',
+            'icon' => 'fas fa-joint',
+            'key' => 'my-topics',
+            'can' => 'loggedin',
+            'submenu' => []
+        ],
+        /*[
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
             'label'       => 4,
             'label_color' => 'success',
-        ],
-        ['header' => 'account_settings'],
+        ],*/
+        ['header' => 'アカウント設定'],
         [
-            'text' => 'profile',
+            'text' => 'プロフィール',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'loggedin',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'パスワード変更',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+            'can' => 'loggedin'
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
+            'text' => 'ログイン',
+            'url' => '/login',
+            'icon' => 'fas fa-sign-in-alt',
+            'key' => 'menu-login'
         ],
+        [
+            'text' => '登録',
+            'url' => '/register',
+            'icon' => 'fas fa-sign-in-alt',
+            'key' => 'menu-register'
+        ],
+        /*
         ['header' => 'labels'],
         [
             'text'       => 'important',
@@ -317,7 +329,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*

@@ -25,6 +25,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('loggedin', function($user) {
+            return $user;
+        });
+        Gate::define('loggedout', function(){
+            return true;
+        });
     }
 }
