@@ -3,11 +3,11 @@
 @section('title', 'アプリ・サービス詳細')
 
 @section('content_header')
-<x-app-header :app="$app"/>
 @stop
 
 @section('content')
     <div>
+    <x-app-header :app="$app"/>
 
     
         <ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-top: 100px;">
