@@ -238,10 +238,11 @@ return [
         ],
 
         // 横メニューの検索
-        [
+        /*[
             'type' => 'sidebar-menu-search',
             'text' => '検索',
-        ],
+        ],*/
+        
         [
             'text' => 'ホーム',
             'url' => '/home',
@@ -252,13 +253,6 @@ return [
             'text'  => 'アプリ・サービス',
             'url' => '/apps',
             'icon' => 'fab fa-app-store',
-        ],
-        [
-            'text' => '新着トピック',
-            'icon' => 'fas fa-comments',
-            'url' => '/pages',
-            'key' => 'new-topics'
-            
         ],
         [
             'text' => 'お気に入りアプリ',
@@ -274,6 +268,17 @@ return [
             'can' => 'loggedin',
             'key' => 'menu-my-apps',
         ],
+        [
+            'header' => 'トピック'
+        ],
+        [
+            'text' => '新着トピック',
+            'icon' => 'fas fa-comments',
+            'url' => '/pages',
+            'key' => 'new-topics'
+            
+        ],
+        
         [
             'text' => 'あなたのトピック',
             'icon' => 'fas fa-joint',
