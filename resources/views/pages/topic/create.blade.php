@@ -11,7 +11,7 @@
     <form action="{{ route('apps.topics.store', ['appId' => $app->id ]) }}" method="POST">
         @csrf
         <div class="card">
-            <div class="card-header">トピックタイトル</div>
+            <div class="card-header"><span class="mr-1">トピックタイトル</span><x-required-badge /></div>
             <div class="card-body">
                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{old('title', $queryInputs['title'] ?? '')}}">
                 @error('title')
@@ -24,7 +24,15 @@
 
         @foreach($template->inputs as $input)
         <div class="card">
-            <div class="card-header">{{ $input->name }}</div>
+            <div class="card-header">
+                {{ $input->name }}
+                @if($input->public)
+                <x-public-badge />
+                @endif
+                @if($input->is_required)
+                <x-required-badge />
+                @endif
+            </div>
             <div class="card-body">
                 {{ $input->description }}
                 <div class="form-group">
