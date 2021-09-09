@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Blade;
 use App\View\Components\Markdown;
 use App\View\Components\PostView;
 use App\View\Components\PostEditorForm;
+use App\View\Components\AppHeader;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('markdown', Markdown::class);
         Blade::component('post-view', PostView::class);
         Blade::component('post-editor-form', PostEditorForm::class);
+        Blade::component('app-header', AppHeader::class);
     }
 }
