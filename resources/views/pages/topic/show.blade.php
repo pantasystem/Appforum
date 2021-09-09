@@ -18,9 +18,14 @@
             <div class="card">
                 <div class="card-header">
                     {{ $content->name }}
+                    @if($content->public)
+                    <x-public-badge />
+                    @endif
                 </div>
                 <div class="card-body">
-                @if($content->type == 'singleline')
+                @if(!($content->public || $app->is_owner || $topic->is_owner ))
+                    未公開なフィールドです
+                @elseif($content->type == 'singleline')
                     {{$content->text}}
                 @elseif($content->type == 'multiline')
                     <x-markdown :text="$content->text"/>
