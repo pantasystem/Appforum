@@ -1,0 +1,1 @@
+<span class="badge badge-pill badge-info"><i class="fas fa-globe"></i>公開</span>
