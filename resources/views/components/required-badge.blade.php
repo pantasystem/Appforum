@@ -1,0 +1,1 @@
+<span class="badge badge-pill badge-danger"><i class="fas fa-exclamation-circle"></i>必須</span>

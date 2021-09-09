@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Content;
 use App\Models\App;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 
 class Topic extends Model
@@ -43,4 +44,10 @@ class Topic extends Model
         }
         return $this->user->username;
     }
+
+    public function getIsOwnAttribute()
+    {
+        return Auth::id() == $this->user_id;
+    }
+    
 }

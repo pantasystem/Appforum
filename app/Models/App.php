@@ -8,6 +8,7 @@ use App\Models\TopicTemplate;
 use App\Models\Topic;
 use App\Models\User;
 use App\Models\Label;
+use Illuminate\Support\Facades\Auth;
 
 class App extends Model
 {
@@ -33,5 +34,10 @@ class App extends Model
     public function labels()
     {
         return $this->hasMany(Label::class, 'app_id');
+    }
+
+    public function getIsOwnerAttribute()
+    {
+        return Auth::id() == $this->user_id;
     }
 }

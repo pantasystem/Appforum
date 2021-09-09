@@ -12,7 +12,7 @@ class Content extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type', 'text', 'name'];
+    protected $fillable = ['type', 'text', 'name', 'public'];
     protected function rules()
     {
         return [

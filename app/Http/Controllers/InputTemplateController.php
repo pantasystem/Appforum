@@ -17,7 +17,8 @@ class InputTemplateController extends Controller
         $template->inputs()->create(array_merge(
             $request->only('name', 'description', 'type'),
             [
-                'is_required' => $request->input('is_required') != 0
+                'is_required' => (boolean)$request->input('is_required'),
+                'public' => (boolean)$request->input('public')
             ]
         ));
         return redirect()->route('apps.topic-templates.edit', ['appId' => $app->id, 'templateId' => $template->id]);
