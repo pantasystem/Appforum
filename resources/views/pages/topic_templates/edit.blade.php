@@ -33,7 +33,6 @@
                         <input type="hidden" name="name" value="{{$template->name}}">
                         <input type="hidden" name="description" value="{{$template->description}}">
                         <input type="hidden" name="is_draft" value="0">
-                        <input type="hidden" name="is_private" value="{{ $template->is_private ? 1 :0 }}">
                         <button type="submit" class="btn btn-primary">テンプレートを公開する</button>
                     </form>
                     @endif
@@ -61,14 +60,7 @@
                     </div>  
                     @enderror
                 </div>
-                <div class="form-group">
-                    <x-checkbox name="is_private" :value="old('is_private', $template->is_private)">
-                        作成されたトピックを非公開にする
-                    </x-checkbox>
-                    @error('is_private')
-                        {{$message}}
-                        @enderror
-                </div>
+              
                 <!-- 下書きの保存状態 -->
                 <input  type="hidden" value="1" name="is_draft" class="@error('is_draft') is-invalid @enderror">
                 @error('is_draft')
@@ -101,7 +93,12 @@
         <div class="card">
             <div class="card-header">
                 {{$input->name}}
-                @if($input->is_required) :※必須 @endif
+                @if($input->public)
+                <x-public-badge />
+                @endif
+                @if($input->is_required) 
+                <x-required-badge />
+                @endif
             </div>
             <div class="card-body">
                 <div>

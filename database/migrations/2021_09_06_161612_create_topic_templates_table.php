@@ -21,7 +21,6 @@ class CreateTopicTemplatesTable extends Migration
             $table->unsignedBigInteger('app_id');
             $table->foreign('app_id')->references('id')->on('apps')->onDelete('cascade');
             $table->boolean('is_draft')->nullable()->default(true);
-            $table->boolean('is_private')->default(false);
         });
     }
 

@@ -57,7 +57,8 @@ class TopicController extends Controller
                 return new Content([ 
                     'name' => $input->name,
                     'type' => $input->type,
-                    'text' => $request->input('input-' . $input->id)
+                    'text' => $request->input('input-' . $input->id),
+                    'public' => $input->public
                 ]);
             });
             $topic->contents()->saveMany($contents);

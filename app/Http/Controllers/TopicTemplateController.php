@@ -41,7 +41,6 @@ class TopicTemplateController extends Controller
         $topicTemplate = new TopicTemplate(
             array_merge(
                 $request->only('name', 'description'),
-                ['is_private' => (boolean)$request->input('is_private')]
             )
         );
         $topicTemplate->app()->associate($app);
@@ -69,7 +68,6 @@ class TopicTemplateController extends Controller
                 $request->only('name', 'description'),
                 [
                     'is_draft' => (boolean)$request->input('is_draft'),
-                    'is_private' => (boolean)$request->input('is_private'),
                 ]
             )
         );

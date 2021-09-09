@@ -25,6 +25,7 @@ class CreateInputsTable extends Migration
             $table->boolean('is_required');
             $table->unsignedBigInteger('topic_template_id');
 
+            $table->boolean('public')->default(true);
             // 入力タイプを表す
             $table->string('type');
             $table->foreign('topic_template_id')->references('id')->on('topic_templates')->onDelete('cascade');

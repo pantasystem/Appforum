@@ -28,7 +28,6 @@ class UpdateTopicTemplateRequest extends FormRequest
             'name' => ['required', 'max:25'],
             'description' => ['nullable', 'max:255'],
             'is_draft' => ['boolean'],
-            'is_private' => ['boolean']
         ];
     }
 }

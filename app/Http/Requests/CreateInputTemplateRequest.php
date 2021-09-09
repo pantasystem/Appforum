@@ -29,7 +29,8 @@ class CreateInputTemplateRequest extends FormRequest
             'name' => ['required', 'max:25'],
             'description' => ['nullable', 'max:255'],
             'type' => ['required', Rule::in(['multiline', 'singleline'])],
-            'is_required' => ['boolean']
+            'is_required' => ['boolean'],
+            'public' => ['boolean']
         ];
     }
 }

@@ -11,7 +11,7 @@ class Input extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['type', 'name', 'description', 'is_required'];
+    protected $fillable = ['type', 'name', 'description', 'is_required', 'public'];
 
     protected function rules()
     {
