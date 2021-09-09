@@ -5,6 +5,7 @@ use App\Http\Controllers\TopicTemplateController;
 use App\Http\Controllers\InputTemplateController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AppController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/apps', [App\Http\Controllers\AppController::class, 'index'])->name('apps.index');
+Route::get('/apps/{app}', [AppController::class, 'show'])->name('apps.show');
+
 
 Route::get('/apps/{app}/topics', [App\Http\Controllers\TopiclistContrller::class, 'index'])->name('apps.topic.index');
 
