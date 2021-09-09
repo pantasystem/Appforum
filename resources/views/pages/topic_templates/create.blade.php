@@ -41,6 +41,14 @@
                     @enderror
                 </div>
                 
+                <div class="form-group">
+                    <x-checkbox name="is_private" :value="old('is_private')">
+                        作成されたトピックを非公開にする
+                    </x-checkbox>
+                    @error('is_private')
+                        {{$message}}
+                        @enderror
+                </div>
             </div>
             <div class="card-footer text-right">
                 <button type="submit" class="btn btn-primary">保存</button>

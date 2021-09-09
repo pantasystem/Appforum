@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class CreateTopicTemplateRequest extends FormRequest
 {
@@ -26,6 +28,7 @@ class CreateTopicTemplateRequest extends FormRequest
         return [
             'name' => ['required', 'max:25'],
             'description' => ['nullable', 'max:255'],
+            'is_private' => ['boolean']
         ];
     }
 }

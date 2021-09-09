@@ -20,15 +20,20 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                    テンプレート編集@if($template->is_draft)(公開済み) @else (下書き) @endif
+                    テンプレート編集@if(!$template->is_draft)
+                    (公開済み) 
+                    @else 
+                    (下書き) 
+                    @endif
                     </div>
-                    @if(!$template->is_draft)
+                    @if($template->is_draft)
                     <form form method="POST" action="{{ route('apps.topic-templates.update', ['appId' => $app->id, 'templateId' => $template->id])}}">
                         @csrf
                         @method('put')
                         <input type="hidden" name="name" value="{{$template->name}}">
                         <input type="hidden" name="description" value="{{$template->description}}">
                         <input type="hidden" name="is_draft" value="0">
+                        <input type="hidden" name="is_private" value="{{ $template->is_private }}">
                         <button type="submit" class="btn btn-primary">テンプレートを公開する</button>
                     </form>
                     @endif
@@ -56,8 +61,16 @@
                     </div>  
                     @enderror
                 </div>
+                <div class="form-group">
+                    <x-checkbox name="is_private" :value="old('is_private', $template->is_private)">
+                        作成されたトピックを非公開にする
+                    </x-checkbox>
+                    @error('is_private')
+                        {{$message}}
+                        @enderror
+                </div>
                 <!-- 下書きの保存状態 -->
-                <input  type="hidden" value="{{(string)$template->is_draft}}" name="is_draft" class="@error('is_draft') is-invalid @enderror">
+                <input  type="hidden" value="1" name="is_draft" class="@error('is_draft') is-invalid @enderror">
                 @error('is_draft')
                     <div class="invalid-feedback">
                         {{ $message }}

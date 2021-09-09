@@ -38,7 +38,12 @@ class TopicTemplateController extends Controller
     {
         $user = Auth::user();
         $app = $user->apps()->findOrFail($appId);
-        $topicTemplate = new TopicTemplate($request->only('name', 'description'));
+        $topicTemplate = new TopicTemplate(
+            array_merge(
+                $request->only('name', 'description'),
+                ['is_private' => (boolean)$request->input('is_private')]
+            )
+        );
         $topicTemplate->app()->associate($app);
         $topicTemplate->save();
 
@@ -63,7 +68,8 @@ class TopicTemplateController extends Controller
             array_merge(
                 $request->only('name', 'description'),
                 [
-                    'is_draft' => $request->input('is_draft') != 0,
+                    'is_draft' => (boolean)$request->input('is_draft'),
+                    'is_private' => (boolean)$request->input('is_private'),
                 ]
             )
         );

@@ -11,7 +11,8 @@ class TopicTemplate extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'is_draft'];
+    protected $fillable = ['name', 'description', 'is_draft', 'is_private'];
+    protected $casts = ['is_private' => 'boolean', 'is_draft' => 'boolean'];
 
     protected function rules()
     {
