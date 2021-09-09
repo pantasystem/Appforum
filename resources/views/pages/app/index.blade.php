@@ -23,6 +23,7 @@
                         </div>
 
                         <div class="card-body pt-5">
+                            <p class="card-text text-muted mb-0">{{$app->user->username}}</p>
                             <p class="card-text text-muted">{{$app->created_at}}</p>
                             <a href="/apps/{{$app->id}}" class="btn btn-primary">詳しく見る</a>
                         </div>
