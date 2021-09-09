@@ -29,4 +29,16 @@ class PostController extends Controller
         $topic->posts()->save($post);
         return redirect()->back();
     }
+
+    public function index($appId, $topicId, Request $request)
+    {
+        $app = App::findOrFail($appId);
+        $topic = $app->topics()->findOrFail($topicId);
+        $replyToId = $request->input('replyTo');
+        if($replyToId) {
+            
+        }else{
+
+        }
+    }
 }
