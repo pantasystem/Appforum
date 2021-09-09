@@ -11,12 +11,10 @@
 
         <img src="{{$app->header_image_path}}" class="position-relative w-100" style="height: 300px;">
 
-        <div class="row position-absolute" style="top: 270px;">
-            <img src="/assets/app_icon_skyblue.png" class="img-rounded ml-4" width="200" height="200">
-            <p class="h1 mt-auto ml-3">{{$app->name}}</p>
+        <div class="row position-absolute" style="top: 300px;">
+            <img src="/assets/app_icon_skyblue.png" class="img-rounded ml-4" width="150" height="150">
+            <h1 class="mt-auto ml-3 mb-0">{{$app->name}}</h1>
         </div>
-
-        
 
 
         <ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-top: 100px;">
