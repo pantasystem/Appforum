@@ -20,10 +20,10 @@
         <tr>
             <td>{{$topics->id}}</td>
             <td>{{$topics->title}}</td>
-            <td>{{$topics->user->username}}</td>
+            <td>{{$topics->user_name}}</td>
             <td>{{$topics->created_at}}</td>
             <td>
-                <a class="btn btn-primary">選択</a>      
+                <a class="btn btn-primary" href="{{ route('apps.topics.show', ['appId' => $topics->app_id, 'topicId' => $topics->id]) }}">選択</a>      
             </td>
         </tr>
         @endforeach

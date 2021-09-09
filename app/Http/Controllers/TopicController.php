@@ -66,7 +66,7 @@ class TopicController extends Controller
         });
 
         // TODO: トピック詳細画面(投稿一覧画面)へ遷移する
-        return $topic->load('contents');
+        return redirect()->route('apps.topics.show', ['appId' => $appId, 'topicId' => $topic->id]);
     }
 
 
@@ -81,5 +81,13 @@ class TopicController extends Controller
         $template = $app->topicTemplates()->where('is_draft', false)->with('inputs')->findOrFail($templateId);
         $queryInputs = $request->all();
         return view('pages.topic.create', compact('template', 'app', 'queryInputs'));
+    }
+
+    public function show($appId, $topicId)
+    {
+        $app = App::findOrFail($appId);
+        $topic = $app->topics()->with('contents', 'user')->findOrFail($topicId);
+        $posts = $topic->posts()->withCount('replies')->with('user')->whereNull('parent_id')->orderBy('id', 'asc')->get();
+        return view('pages.topic.show', compact('app', 'topic', 'posts'));
     }
 }
