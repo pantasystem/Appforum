@@ -13,13 +13,15 @@
         <div class="container-fluid">
             <div class="row">
                 @foreach($apps as $app)
-                <div class="col-sm-6 col-xl-4">
-                    <div class="m-3 p-3 bg-secondary rounded-lg">
-                        <img src="{{$app->icon_path}}" width="100px">
-                        <p class="h2">{{$app->name}}</p>
-                        <p>作成者ID : {{$app->user_id}}</p>
-                        <p>作成日 : {{$app->created_at}}</p>
-                    </div>
+                <div class="col-sm-6 col-xl-4 p-3">
+                    <a href="/apps/{{$app->id}}">
+                        <div class="p-3 bg-secondary rounded-lg">
+                            <img src="{{$app->icon_path}}" width="100px">
+                            <p class="h2">{{$app->name}}</p>
+                            <p>作成者ID : {{$app->user_id}}</p>
+                            <p>作成日 : {{$app->created_at}}</p>
+                        </div>
+                    </a>
                 </div>
                 @endforeach
             </div>
