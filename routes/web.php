@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopicTemplateController;
 use App\Http\Controllers\InputTemplateController;
+use App\Http\Controllers\TopicController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/apps', [App\Http\Controllers\AppController::class, 'index'])->name('apps.index');
-Route::get('/apps/{appId}', [App\Http\Controllers\AppController::class, 'show'])->name('apps.show');
+
+Route::get('/apps/{app}/topics', [App\Http\Controllers\TopiclistContrller::class, 'index'])->name('apps.topic.index');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/apps/{appId}/topic-templates/create', [TopicTemplateController::class, 'create'])->name('apps.topic-templates.create');
@@ -33,4 +36,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/apps/{appId}/topic-templates/{templateId}/inputs', [InputTemplateController::class, 'store'])->name('apps.topic-templates.inputs.store');
     Route::get('/apps/{appId}/topic-templates/{templateId}/inputs/create', [InputTemplateController::class, 'create'])->name('apps.topic-templates.inputs.create');
 });
-Route::get('apps/{appId}/topic-templates', [TopicTemplateController::class, 'index'])->name('apps.topic-templates.index');
+Route::get('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'index'])->name('apps.topic-templates.index');
+
+Route::get('/apps/{appId}/topics/create', [TopicController::class, 'create'])->name('apps.topics.create');
+Route::post('/apps/{appId}/topics', [TopicController::class, 'store'])->name('apps.topics.store');
+
+Route::get('/apps/{appId}/topics/{topicId}', [TopicController::class, 'show'])->name('apps.topics.show');
+Route::post('/apps/{appId}/topics/{topicId}', [PostController::class, 'store'])->name('apps.topics.posts.store');

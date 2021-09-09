@@ -5,7 +5,7 @@
 @section('content_header')
 <nav area-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">アプリ一覧</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('apps.index')}}">アプリ一覧</a></li>
         <li class="breadcrumb-item"><a href="{{route('apps.topic-templates.create', ['appId' => $app->id])}}">{{ $app->name}}</a></li>
         <li class="breadcrumb-item active" aria-current="page">
             @if($select) 
@@ -19,13 +19,23 @@
 @stop
 
 @section('content')
-<h1>
-@if($select) 
-トピックテンプレート選択    
-@else 
-トピックテンプレート一覧
-@endif
-</h1>
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1>
+        @if($select) 
+        トピックテンプレート選択    
+        @else 
+        トピックテンプレート一覧
+        @endif
+        </h1>
+    </div>
+    <div>
+        @if($owner)
+        <a class="btn btn-primary" href="{{ route('apps.topic-templates.create', ['appId' => $app->id]) }}">テンプレート作成</a>
+        @endif
+    </div>
+</div>
+
 <div class="card">
     <table class="table">
         <thead>
@@ -40,7 +50,10 @@
             <td>{{$template->name}}</td>
             <td>
                 @if($select)
-                <a class="btn btn-primary">選択</a>
+                <form action="{{ route('apps.topics.create', ['appId' => $app->id ]) }}" method="GET">
+                    <button type="submit" class="btn btn-primary">トピック作成</button>
+                    <input type="hidden" name="templateId" value="{{$template->id}}">
+                </form>
                 @endif
                 
             </td>
