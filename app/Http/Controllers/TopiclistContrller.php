@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TopiclistContrller extends Controller
 {
-    function index( App $app ){
+    public function index( App $app ){
         //投稿一覧画面の表示
 
         //topicsテーブルに対してselect文を実行し、データを取得 id昇順

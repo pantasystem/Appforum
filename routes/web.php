@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopicTemplateController;
 use App\Http\Controllers\InputTemplateController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\AppController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('/apps/{appId}/topic-templates/{templateId}', [TopicTemplateController::class, 'update'])->name('apps.topic-templates.update');
     Route::post('/apps/{appId}/topic-templates/{templateId}/inputs', [InputTemplateController::class, 'store'])->name('apps.topic-templates.inputs.store');
     Route::get('/apps/{appId}/topic-templates/{templateId}/inputs/create', [InputTemplateController::class, 'create'])->name('apps.topic-templates.inputs.create');
+    Route::get('/apps/create', [AppController::class, 'create'])->name('apps.create');
+    Route::post('/apps/store', [TopicTemplateController::class, 'store'])->name('apps.store');
 });
 Route::get('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'index'])->name('apps.topic-templates.index');
 

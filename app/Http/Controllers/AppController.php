@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\App;
+use App\Models\Content;
+use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use App\Modeles\User;
 
 class AppController extends Controller
 {
@@ -16,4 +21,18 @@ class AppController extends Controller
         //bladeテンプレートを呼び出し、データを渡す
         return view('pages.app.index',['data'=>$apps]);
     }
+
+    public function store()
+    {
+        $user = Auth::user();
+        
+    }
+
+    public function create()
+    {
+        $user = Auth::user();
+        return view('pages.app.create', compact('user'));
+    }
+    
+
 }
