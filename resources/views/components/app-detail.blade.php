@@ -1,4 +1,7 @@
 <div>
- 
+    <x-app-header :app="$app"/>
 
-</div>
+        {{ $slot }}
+
+
+    </div>
