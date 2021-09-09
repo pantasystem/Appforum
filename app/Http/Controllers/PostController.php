@@ -35,10 +35,13 @@ class PostController extends Controller
         $app = App::findOrFail($appId);
         $topic = $app->topics()->findOrFail($topicId);
         $replyToId = $request->input('replyTo');
-        if($replyToId) {
-            
-        }else{
-
+        if(!$replyToId) {
+            return redirect()->route('apps.topics.show', ['appId' => $appId, 'topicId' => $topicId]);  
         }
+
+        $replyTo = $topic->posts()->findOrFail($replyToId);
+        $replies = $replyTo->posts()->get();
+
+        
     }
 }
