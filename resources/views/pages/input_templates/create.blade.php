@@ -56,16 +56,8 @@
                 </div>
                 <div clsas="form-group">
 
-                    <div class="form-check">
-                        {{ Form::checkbox('is_required', old('is_required', true), old('is_required', true), ['class' => 'form-check-input']) }}
-                        <label class="form-check-label" for="flexCheckDefault">
-                            必須項目
-                        </label>
-                        @error('is_required')
-                        {{$message}}
-                        @enderror
-                            
-                    </div>
+                    <x-checkbox :value="old('is_required', true)" name="is_required">必須項目</x-checkbox>
+
                 </div>
             </div>
             <div class="card-footer text-right">
