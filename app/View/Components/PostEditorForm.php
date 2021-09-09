@@ -31,9 +31,9 @@ class PostEditorForm extends Component
         }
         if($post) {
             $this->text = $post->text;
-            $action = route('apps.topics.posts.store', ['appId' => $topic->app_id, 'topicId' => $topic->id, 'parentId' => $this->parentId]);
+            $this->action = route('apps.topics.posts.store', ['appId' => $topic->app_id, 'topicId' => $topic->id]);
         }else{
-            $action = route('apps.topics.posts.store', ['appId' => $topic->app_id, 'topicId' => $topic->id, 'parentId' => $this->parentId]);
+            $this->action = route('apps.topics.posts.store', ['appId' => $topic->app_id, 'topicId' => $topic->id]);
 
         }
         

@@ -39,7 +39,7 @@
         @endforeach
     </div>
 
-    <x-post-editor-form :topic="$topic" />
+    <x-post-editor-form :topic="$topic"/>
 
     
 </div>

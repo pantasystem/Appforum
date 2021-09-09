@@ -18,6 +18,9 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
+                    @if($replyTo)
+                    <input type="hidden" name="parentId" value="{{$parentId}}" />
+                    @endif
                     <textarea name="text" class="form-control @error('text') is-invalid @enderror">{{old('text', $text)}}</textarea>
                     @error('text')
                     <div class="invalid-feedback">
