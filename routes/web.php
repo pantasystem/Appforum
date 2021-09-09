@@ -46,3 +46,4 @@ Route::post('/apps/{appId}/topics', [TopicController::class, 'store'])->name('ap
 
 Route::get('/apps/{appId}/topics/{topicId}', [TopicController::class, 'show'])->name('apps.topics.show');
 Route::post('/apps/{appId}/topics/{topicId}', [PostController::class, 'store'])->name('apps.topics.posts.store');
+Route::get('/apps/{appId}topics/{topicId}/posts', [PostController::class, 'index'])->name('apps.topics.posts.index');

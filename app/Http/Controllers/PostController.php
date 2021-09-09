@@ -17,8 +17,8 @@ class PostController extends Controller
         $app = App::findOrFail($appId);
         $topic = $app->topics()->findOrFail($topicId);
         $post = new Post($request->only('text'));
-        if($request->parent_id) {
-            $parent = $topic->posts()->findOrFail($request->parent_id);
+        if($request->parentId) {
+            $parent = $topic->posts()->findOrFail($request->parentId);
 
             $post->replyTo()->associate($parent);
         }
@@ -28,5 +28,20 @@ class PostController extends Controller
         
         $topic->posts()->save($post);
         return redirect()->back();
+    }
+
+    public function index($appId, $topicId, Request $request)
+    {
+        $app = App::findOrFail($appId);
+        $topic = $app->topics()->findOrFail($topicId);
+        $replyToId = $request->input('replyTo');
+        if(!$replyToId) {
+            return redirect()->route('apps.topics.show', ['appId' => $appId, 'topicId' => $topicId]);  
+        }
+
+        $replyTo = $topic->posts()->with('user')->withCount('replies')->findOrFail($replyToId);
+        $replies = $replyTo->replies()->with('user')->withCount('replies')->get();
+        return view('pages.post.index', ['app' => $app, 'topic' => $topic, 'replies' => $replies, 'replyTo' => $replyTo]);
+        
     }
 }

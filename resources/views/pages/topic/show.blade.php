@@ -35,50 +35,11 @@
 
     <div>
         @foreach($posts as $post)
-        <div class="card">
-            <div class="card-header">
-                {{ $post->username }}
-            </div>
-            <div class="card-body">
-                <x-markdown :text="$post->text"/>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex justify-content-between">
-                    <div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+        <x-post-view :post="$post" :app="$app" :topic="$topic"/>
         @endforeach
     </div>
 
-    <form action="{{ route('apps.topics.posts.store', ['appId' => $app->id, 'topicId' => $topic->id])}}" method="POST">
-        @csrf
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="card-title">
-                    投稿を作成
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary">投稿</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="form-group">
-                    <textarea name="text" class="form-control @error('text') is-invalid @enderror">{{old('text')}}</textarea>
-                    @error('text')
-                    <div class="invalid-feedback">
-                        {{$message}}
-                    </div>
-                    @enderror
-                </div>
-            </div>
-        </div>
-    </form>
-
+    <x-post-editor-form :topic="$topic"/>
 
     
 </div>
