@@ -25,62 +25,34 @@ class AppController extends Controller
         return view('pages.app.index',['apps'=>$apps]);
     }
 
-    public function store($user, Request $request)
+    public function store(Request $request)
     {
-        $userId = Auth::id();
-        $user = Auth::id();
-
+    
         $rules = [
             'name' => ['required', 'max:25'],
-            'text' => ['nullable', 'max:255']
+            'text' => ['nullable', 'max:3000'],
+            'icon-path' => ['required', 'image'],
+            'header_image_path' => ['required', 'image']
         ];
-        $attributeNames = ['name' => 'タイトル'];
-        foreach($request->inputs as $input) {
-            $key = 'input-' . $input->id;
-            $rule = [];
-            if($input->is_required) {
-                $rule[] = 'required';
-            }else{
-                $rule[] = 'nullable';
-            }
-            if($input->type == 'singleline') {
-                $rule[] = 'max:255';
-            }
-            $attributeNames[$key] = $input->name;
-            $rules[$key] = $rule;
-        }
-        $validator = Validator::make($request->all(), $rules);
-        foreach($request->inputs as $input) {
-            $validator->setAttributeNames($attributeNames);
-        }
-        $validator->validate();
+        $validated = $request->validate(
+            $rules
+        ); 
 
-        $app = DB::transaction(function() use ($request, $user){
-            $app = new App($request->only('name'));
-            //$topic->app()->associate($app);
-            if(Auth::check()) {
-                $app->user()->associate(Auth::user());
-            }
-            $app->save();
+        $app = new App($request->only('name'));
+            
+        $app->user()->associate(Auth::user());
 
-            $filename=$request->store('public');       //storageフォルダに投稿した画像を保存しファイルパスを格納
-            $picture->image=str_replace('public/','',$filename);        //ファイル名から「public/」を取り除く
-            $picture->save();
+        $icon_path = $request->file('icon-path')->store('icons');
+ 
+        $header_image_path = $request->file('header_image_path')->store('headers');
 
-            $contents = $request->inputs->map(function($input) use ($request){
-                return new Content([ 
-                    'name' => $input->name,
-                    'type' => $input->type,
-                    'text' => $request->input('input-' . $input->id)
-                ]);
-            });
-            $app->contents()->saveMany($contents);
+        $app->$icon_path;
+        $app->$header_image_path;
 
-            return $app;
-        });
+        $app->save();
 
         // TODO: App詳細画面(投稿一覧画面)へ遷移する
-        return redirect()->route('apps.show', ['appId' => $appId, 'userId' => $user->id]);
+        return redirect()->route('apps.show', ['appId' => $appId]);
     }
 
     public function create()

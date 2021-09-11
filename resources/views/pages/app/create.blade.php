@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                     <label for="topic-template-description">Appの説明</label>
-                    <textarea name="app-text" class="form-control @error('app-text') is-invalid @enderror" id="app-text">{{old('text')}}</textarea>
+                    <textarea name="app-text" class="form-control @error('app-text') is-invalid @enderror" id="app-text">{{old('app-text')}}</textarea>
                     @error('text')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -35,11 +35,17 @@
                 </div>
                 <div class="icon-pfoto">
                     <label for="photo-icon">アプリアイコン:</label>
-                    <input type="file" class="form-control" name="icon-file">
+                    <input type="file" class="form-control" name="icon-path" value="{{ old('icon-path')}}" class="@error('icon-path') is-invalid @enderror">
+                    @error('icon-path')
+                    <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="header-photo">
                     <label for="photo-header">ヘッダー画像:</label>
-                    <input type="file" class="form-control" name="header-file">
+                    <input type="file" class="form-control" name="header_image_path" value="{{old('header_image_path')}}" class="@error('header_image_path') is-invalid @enderror">
+                    @error('header_image_path')
+                    <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
             <div class="card-footer text-right">
