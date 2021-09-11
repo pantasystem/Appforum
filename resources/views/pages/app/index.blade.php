@@ -13,12 +13,21 @@
         <div class="container-fluid">
             <div class="row">
                 @foreach($apps as $app)
-                <div class="col-sm-6 col-xl-4">
-                    <div class="m-3 p-3 bg-secondary rounded-lg">
-                        <img src="{{$app->icon_path}}" width="100px">
-                        <p class="h2">{{$app->name}}</p>
-                        <p>作成者ID : {{$app->user_id}}</p>
-                        <p>作成日 : {{$app->created_at}}</p>
+                <div class="col-sm-6 col-md-4 col-xl-3 p-3">
+                    <div class="card">
+
+                        <img src="{{$app->header_image_path}}" width="100%" height="150">
+                        <div class="row position-absolute ml-3" style="top: 100px">
+                            <img src="{{$app->icon_path}}" width="80" height="80" class="bg-white">
+                            <h3 class="card-title h4 ml-1 mt-auto">{{$app->name}}</h3>
+                        </div>
+
+                        <div class="card-body pt-5">
+                            <p class="card-text text-muted mb-1">{{$app->user->username}}</p>
+                            <p class="card-text text-muted">{{$app->created_at}}</p>
+                            <a href="/apps/{{$app->id}}" class="btn btn-primary">詳しく見る</a>
+                        </div>
+
                     </div>
                 </div>
                 @endforeach

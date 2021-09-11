@@ -20,9 +20,13 @@
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                    テンプレート編集@if($template->is_draft)(公開済み) @else (下書き) @endif
+                    テンプレート編集@if(!$template->is_draft)
+                    (公開済み) 
+                    @else 
+                    (下書き) 
+                    @endif
                     </div>
-                    @if(!$template->is_draft)
+                    @if($template->is_draft)
                     <form form method="POST" action="{{ route('apps.topic-templates.update', ['appId' => $app->id, 'templateId' => $template->id])}}">
                         @csrf
                         @method('put')
@@ -56,8 +60,9 @@
                     </div>  
                     @enderror
                 </div>
+              
                 <!-- 下書きの保存状態 -->
-                <input  type="hidden" value="{{(string)$template->is_draft}}" name="is_draft" class="@error('is_draft') is-invalid @enderror">
+                <input  type="hidden" value="1" name="is_draft" class="@error('is_draft') is-invalid @enderror">
                 @error('is_draft')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -88,7 +93,12 @@
         <div class="card">
             <div class="card-header">
                 {{$input->name}}
-                @if($input->is_required) :※必須 @endif
+                @if($input->public)
+                <x-public-badge />
+                @endif
+                @if($input->is_required) 
+                <x-required-badge />
+                @endif
             </div>
             <div class="card-body">
                 <div>

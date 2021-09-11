@@ -21,6 +21,7 @@ class CreateContentsTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('topic_id');
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
+            $table->boolean('public')->default(true);
             
         });
     }

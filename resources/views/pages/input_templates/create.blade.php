@@ -20,7 +20,7 @@
         @csrf
         <div class="card">
             <div class="card-header">
-                <label for="topic-templates-input-0-name">入力名</label>
+                <label for="topic-templates-input-0-name">フィールド名</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="topic-templates-input-0-name" name="name" value="{{old('name')}}">
                 @error('name')
                 <div class='invalid-feedback'>
@@ -30,12 +30,12 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label for="topic-templates-input-0-description">入力についての説明</label>
+                    <label for="topic-templates-input-0-description">フィールドについての説明</label>
                     <textarea class="form-control" name="description">{{old('description')}}</textarea>
 
                 </div>
                 <div class="form-group">
-                    <label for="topic-templates-input-type">入力タイプ</label>
+                    <label for="topic-templates-input-type">フィールドタイプ</label>
                     {{ 
                         Form::select(
                             'type', 
@@ -56,16 +56,11 @@
                 </div>
                 <div clsas="form-group">
 
-                    <div class="form-check">
-                        {{ Form::checkbox('is_required', old('is_required', true), old('is_required', true), ['class' => 'form-check-input']) }}
-                        <label class="form-check-label" for="flexCheckDefault">
-                            必須項目
-                        </label>
-                        @error('is_required')
-                        {{$message}}
-                        @enderror
-                            
-                    </div>
+                    <x-checkbox :value="old('is_required', true)" name="is_required">必須項目</x-checkbox>
+
+                </div>
+                <div class="form-group">
+                    <x-checkbox :value="old('public', true)" name="public">公開フィールド</x-checkbox>
                 </div>
             </div>
             <div class="card-footer text-right">

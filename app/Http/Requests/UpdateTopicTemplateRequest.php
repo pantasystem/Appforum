@@ -27,7 +27,7 @@ class UpdateTopicTemplateRequest extends FormRequest
         return [
             'name' => ['required', 'max:25'],
             'description' => ['nullable', 'max:255'],
-            'is_draft' => ['required', Rule::in([0,1])]
+            'is_draft' => ['boolean'],
         ];
     }
 }
