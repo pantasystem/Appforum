@@ -1,11 +1,20 @@
 @extends('adminlte::page')
 
 @section('title', 'アプリ・サービス一覧')
+@section('content_header')
+<div class="d-flex justify-content-between align-items-center">
+    <div>
+        <h1>
+        トピック一覧
+        </h1>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="{{ route('apps.topics.create', ['appId' => $app->id])}}">トピックを作成</a>
+    </div>
+</div>
+@endsection
 
 @section('content')
-<h1>
-トピック一覧
-</h1>
 <div class="card">
     <table class="table">
         <thead>
@@ -20,10 +29,10 @@
         <tr>
             <td>{{$topics->id}}</td>
             <td>{{$topics->title}}</td>
-            <td>{{$topics->user->username}}</td>
+            <td>{{$topics->username}}</td>
             <td>{{$topics->created_at}}</td>
             <td>
-                <a class="btn btn-primary">選択</a>      
+                <a class="btn btn-primary" href="{{ route('apps.topics.show', ['appId' => $topics->app_id, 'topicId' => $topics->id]) }}">選択</a>      
             </td>
         </tr>
         @endforeach
