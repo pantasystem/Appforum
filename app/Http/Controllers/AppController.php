@@ -42,17 +42,17 @@ class AppController extends Controller
             
         $app->user()->associate(Auth::user());
 
-        $icon_path = $request->file('icon-path')->store('icons');
+        $icon_path = $request->file('icon-path')->store('icons', 'public');
  
-        $header_image_path = $request->file('header_image_path')->store('headers');
+        $header_image_path = $request->file('header_image_path')->store('headers', 'public');
 
-        $app->$icon_path;
-        $app->$header_image_path;
+        $app->icon_path = $icon_path;
+        $app->header_image_path = $header_image_path;
 
         $app->save();
 
         // TODO: App詳細画面(投稿一覧画面)へ遷移する
-        return redirect()->route('apps.show', ['appId' => $appId]);
+        return redirect()->route('apps.show', ['app' => $app]);
     }
 
     public function create()

@@ -8,7 +8,7 @@
 
 @section('content')
 <div>
-<form action="{{ route('apps.store', ['user' => $user ?? ''->id ]) }}" method="POST">
+<form action="{{ route('apps.store', ['user' => $user ?? ''->id ]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="card">
             <div class="card-header">

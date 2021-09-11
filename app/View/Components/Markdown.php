@@ -13,11 +13,11 @@ class Markdown extends Component
      *
      * @return void
      */
-    public function __construct(string $text)
+    public function __construct(?string $text)
     {
         $parser = new \Parsedown();
         $parser->setSafeMode(true);
-        $this->html = $parser->text($text);
+        $this->html = $parser->text($text ?? '');
     }
 
     /**
