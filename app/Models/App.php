@@ -9,6 +9,8 @@ use App\Models\Topic;
 use App\Models\User;
 use App\Models\Label;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 
 class App extends Model
 {
@@ -40,4 +42,20 @@ class App extends Model
     {
         return Auth::id() == $this->user_id;
     }
+
+    public function getHeaderImageUrlAttribute()
+    {
+        if(Storage::disk('public')->exists($this->header_image_path)){
+            return Config::get('apps.url') . Storage::url($this->header_image_path);
+        }
+        return Config::get('apps.url') . $this->header_image_path;
+    }
+
+    public function getIconUrlAttribute()
+    {
+        if(Storage::disk('public')->exists($this->icon_path)){
+            return Config::get('apps.url') . Storage::url($this->icon_path);
+        }
+        return Config::get('apps.url') . $this->icon_path;
+    }   
 }
