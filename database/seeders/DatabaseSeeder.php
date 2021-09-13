@@ -59,7 +59,10 @@ class DatabaseSeeder extends Seeder
         // それぞれのPostにstamp * userな組み合わせのリアクションを挿入している
         $posts->map(function($post) use ($stamps, $users){
             $reactions = $stamps->map(function($stamp) use ($post, $users){
-                $reactions = $users->map(function($user) use ($stamp, $post){
+                $n = rand(1, $users->count());
+                $reactions = $users->filter(function($user) use($n){
+                    return $user->id == $n;    
+                })->map(function($user) use ($stamp, $post){
                     $postReaction = new PostReaction();
                     $postReaction->user()->associate($user);
                     $postReaction->stamp()->associate($stamp);
