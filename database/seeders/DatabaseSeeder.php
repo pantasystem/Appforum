@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
             $reactions = $stamps->map(function($stamp) use ($post, $users){
                 $n = rand(1, $users->count());
                 $reactions = $users->filter(function($user) use($n){
-                    return $user->id == $n;    
+                    return $user->id % $n == 0;
                 })->map(function($user) use ($stamp, $post){
                     $postReaction = new PostReaction();
                     $postReaction->user()->associate($user);
