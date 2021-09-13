@@ -8,6 +8,7 @@ use App\Models\App;
 use App\Models\Topic;
 use App\Models\Content;
 use App\Models\Post;
+use App\Models\Stamp;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +19,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $stamps = collect(['👍', '👎', '❤️', '😁', '😓', '🎉', '😭', '😇'])->map(function($emoji){
+            return Stamp::create([
+                'name' => $emoji,
+            ]);
+        });
+
         $users = User::factory(10)->create();
         $apps = $users->map(function($user){
             return App::factory(3)->make()->each(function($app) use ($user){

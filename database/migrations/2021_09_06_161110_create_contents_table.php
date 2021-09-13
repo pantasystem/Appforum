@@ -22,6 +22,7 @@ class CreateContentsTable extends Migration
             $table->unsignedBigInteger('topic_id');
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
             $table->boolean('public')->default(true);
+            $table->collation = 'utf8mb4_bin';
             
         });
     }

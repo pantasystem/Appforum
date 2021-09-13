@@ -21,7 +21,8 @@ services:
       - db
     # MySQL
   db:
-    image: mariadb:10.6.2
+    build:
+      context: ./mariadb
     container_name: appforumdb
     ports:
       - 3360:3306

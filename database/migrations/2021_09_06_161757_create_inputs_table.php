@@ -29,6 +29,7 @@ class CreateInputsTable extends Migration
             // 入力タイプを表す
             $table->string('type');
             $table->foreign('topic_template_id')->references('id')->on('topic_templates')->onDelete('cascade');
+            $table->collation = 'utf8mb4_bin';
         });
     }
 

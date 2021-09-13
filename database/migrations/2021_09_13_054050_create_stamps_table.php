@@ -18,6 +18,7 @@ class CreateStampsTable extends Migration
             $table->timestamps();
             $table->string('name')->unique();
             $table->string('image')->nullable();
+            $table->collation = 'utf8mb4_bin';
         });
     }
 
