@@ -5,6 +5,6 @@
     <h1 class="mt-auto ml-3 mb-0">{{$app->name}}</h1>
 </div>
 
-<a href="#" class="btn btn-primary d-block mt-3 ml-auto mr-5 mb-5" style="width: 150px;">トピック作成</a>
+<a href="{{ route('apps.topics.create', ['appId' => $app->id]) }}" class="btn btn-primary d-block mt-3 ml-auto mr-5 mb-5" style="width: 150px;">トピック作成</a>
 
 </div>
