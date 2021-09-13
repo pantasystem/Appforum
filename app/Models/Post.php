@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Topic;
 use App\Models\User;
+use App\Model\PostReaction;
 
 
 class Post extends Model
@@ -52,5 +53,10 @@ class Post extends Model
             return $this->user->username;
         }
         return '匿名ユーザー';
+    }
+
+    public function reactions()
+    {
+        return $this->hasMany(PostReaction::class, 'post_id');
     }
 }

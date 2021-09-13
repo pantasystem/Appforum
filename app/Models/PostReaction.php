@@ -14,6 +14,8 @@ class PostReaction extends Model
 
     protected $fillable = ['stamp_id', 'post_id', 'user_id'];
 
+    protected $with = ['stamp'];
+
     public function post()
     {
         return $this->belongsTo(Post::class, 'post_id');

@@ -9,7 +9,7 @@ use App\Models\Content;
 use App\Models\App;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\TopicReaction;
 
 class Topic extends Model
 {
@@ -48,6 +48,11 @@ class Topic extends Model
     public function getIsOwnAttribute()
     {
         return Auth::id() == $this->user_id;
+    }
+
+    public function reactions()
+    {
+        return $this->hasMany(TopicReaction::class, 'topic_id');
     }
     
 }
