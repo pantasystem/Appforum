@@ -45,11 +45,17 @@ class App extends Model
 
     public function getHeaderImageUrlAttribute()
     {
-        return Config::get('apps.url') . Storage::url($this->header_image_path);
+        if(Storage::disk('public')->exists($this->header_image_path)){
+            return Config::get('apps.url') . Storage::url($this->header_image_path);
+        }
+        return Config::get('apps.url') . $this->header_image_path;
     }
 
     public function getIconUrlAttribute()
     {
-        return Config::get('apps.url') . Storage::url($this->icon_path);
+        if(Storage::disk('public')->exists($this->icon_path)){
+            return Config::get('apps.url') . Storage::url($this->icon_path);
+        }
+        return Config::get('apps.url') . $this->icon_path;
     }   
 }
