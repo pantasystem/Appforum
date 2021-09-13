@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Topic;
 use App\Models\User;
 use App\Models\PostReaction;
+use App\Models\ReactionCount;
 
 
 class Post extends Model
@@ -62,6 +63,21 @@ class Post extends Model
 
     public function getReactionCountsAttribute()
     {
-        return $this->reactions->groupBy('stamp_id');
+        $nameAndStamp = [];
+        $nameAndReactions = [];
+        foreach($this->reactions as $reaction) {
+            $nameAndStamp[$reaction->stamp->name] = $reaction->stamp;
+            $reactions = $nameAndReactions[$reaction->stamp->name] ?? [];
+            $reactions[] = $reaction;
+            $nameAndReactions[$reaction->stamp->name] = $reactions;
+        }
+        
+        $reactionCounts = collect($nameAndReactions)->map(function($reactions, $stampName) use ($nameAndStamp){
+            $stamp = $nameAndStamp[$stampName];
+            
+            return new ReactionCount($stamp, $reactions);
+        });
+
+        return $reactionCounts;
     }
 }

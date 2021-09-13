@@ -88,7 +88,7 @@ class TopicController extends Controller
     {
         $app = App::findOrFail($appId);
         $topic = $app->topics()->with('contents', 'user')->findOrFail($topicId);
-        $posts = $topic->posts()->withCount('replies')->with('user')->whereNull('parent_id')->orderBy('id', 'asc')->get();
+        $posts = $topic->posts()->withCount('replies')->with('user','reactions')->whereNull('parent_id')->orderBy('id', 'asc')->get();
         return view('pages.topic.show', compact('app', 'topic', 'posts'));
     }
 }

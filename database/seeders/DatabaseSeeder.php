@@ -55,19 +55,22 @@ class DatabaseSeeder extends Seeder
                 return $post;
             });
         })->collapse();
-        
+
         // それぞれのPostにstamp * userな組み合わせのリアクションを挿入している
         $posts->map(function($post) use ($stamps, $users){
+            $reactions = $stamps->map(function($stamp) use ($post, $users){
+                $reactions = $users->map(function($user) use ($stamp, $post){
+                    $postReaction = new PostReaction();
+                    $postReaction->user()->associate($user);
+                    $postReaction->stamp()->associate($stamp);
+                    $postReaction->post()->associate($post);
+                    return $postReaction;
+                });
+                return $reactions;
+                
+            })->collapse();
             $post->reactions()->saveMany(
-                $stamps->map(function($stamp) use ($post, $users){
-                    return $users->map(function($user) use ($stamp, $post){
-                        return new PostReaction([
-                            'post_id' => $post->id,
-                            'user_id' => $user->id
-                        ]);
-                    })->collapse();
-                    
-                })->collapse()
+                $reactions
             );
         });
     }
