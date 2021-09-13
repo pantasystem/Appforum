@@ -22,6 +22,7 @@ class CreatePostReactionsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('stamp_id')->references('id')->on('stamps');
             $table->foreign('post_id')->references('id')->on('posts');
+            $table->unique(['user_id', 'stamp_id', 'post_id']);
             $table->collation = 'utf8mb4_bin';
         });
     }

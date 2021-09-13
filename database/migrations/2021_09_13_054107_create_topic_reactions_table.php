@@ -22,6 +22,8 @@ class CreateTopicReactionsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('stamp_id')->references('id')->on('stamps');
             $table->foreign('topic_id')->references('id')->on('topics');
+            $table->unique(['user_id', 'stamp_id', 'topic_id']);
+
             $table->collation = 'utf8mb4_bin';
         });
     }
