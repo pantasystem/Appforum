@@ -26,6 +26,11 @@
                 </form>
                         
             </div>
+            <div>
+                <button class="btn btn-link add-reaction-button" data-post-id="{{$post->id}}" data-app-id="{{$app->id}}" data-topic-id="{{$topic->id}}" data-selected-stamp-names="{{$post->selected_stamp_names}}">
+                    <i class="far fa-grin-beam mr-1"></i>{{ $post->reactions->count() }}
+                </button>
+            </div>
         </div>
     </div>
 </div>

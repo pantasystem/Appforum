@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\App;
 use App\Models\Topic;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Stamp;
 
 class PostController extends Controller
 {
@@ -39,9 +40,10 @@ class PostController extends Controller
             return redirect()->route('apps.topics.show', ['appId' => $appId, 'topicId' => $topicId]);  
         }
 
+        $stamps = Stamp::get();
         $replyTo = $topic->posts()->with('user', 'reactions')->withCount('replies')->findOrFail($replyToId);
         $replies = $replyTo->replies()->with('user', 'reactions')->withCount('replies')->get();
-        return view('pages.post.index', ['app' => $app, 'topic' => $topic, 'replies' => $replies, 'replyTo' => $replyTo]);
+        return view('pages.post.index', ['app' => $app, 'topic' => $topic, 'replies' => $replies, 'replyTo' => $replyTo, 'stamps' => $stamps]);
         
     }
 }

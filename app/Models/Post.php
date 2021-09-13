@@ -80,4 +80,14 @@ class Post extends Model
 
         return $reactionCounts;
     }
+
+
+    public function getSelectedStampNamesAttribute()
+    {
+        return $this->reaction_counts->filter(function($count){
+            return $count->isReacted();
+        })->map(function($count){
+            return $count->stamp->name;
+        })->values();
+    }
 }
