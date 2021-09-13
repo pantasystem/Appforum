@@ -8,6 +8,8 @@ use App\Models\App;
 use App\Models\Topic;
 use App\Models\Content;
 use App\Models\Post;
+use App\Models\Stamp;
+use App\Models\PostReaction;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +20,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $stamps = collect(['👍', '👎', '❤️', '😁', '😓', '🎉', '😭', '😇'])->map(function($emoji){
+            return Stamp::create([
+                'name' => $emoji,
+            ]);
+        });
+
         $users = User::factory(10)->create();
         $apps = $users->map(function($user){
             return App::factory(3)->make()->each(function($app) use ($user){
@@ -47,6 +55,26 @@ class DatabaseSeeder extends Seeder
                 return $post;
             });
         })->collapse();
-        
+
+        // それぞれのPostにstamp * userな組み合わせのリアクションを挿入している
+        $posts->map(function($post) use ($stamps, $users){
+            $reactions = $stamps->map(function($stamp) use ($post, $users){
+                $n = rand(1, $users->count());
+                $reactions = $users->filter(function($user) use($n){
+                    return $user->id % $n == 0;
+                })->map(function($user) use ($stamp, $post){
+                    $postReaction = new PostReaction();
+                    $postReaction->user()->associate($user);
+                    $postReaction->stamp()->associate($stamp);
+                    $postReaction->post()->associate($post);
+                    return $postReaction;
+                });
+                return $reactions;
+                
+            })->collapse();
+            $post->reactions()->saveMany(
+                $reactions
+            );
+        });
     }
 }

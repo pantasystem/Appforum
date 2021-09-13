@@ -20,6 +20,7 @@ class CreateLabelsTable extends Migration
             $table->string('name');
             $table->string('color');
             $table->foreign('app_id')->references('id')->on('apps');
+            $table->collation = 'utf8mb4_bin';
         });
     }
 

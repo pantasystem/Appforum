@@ -23,7 +23,7 @@ class CreatePostsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
-            
+            $table->collation = 'utf8mb4_bin';
         });
     }
 
