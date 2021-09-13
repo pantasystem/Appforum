@@ -8,9 +8,9 @@
         <div>
             @foreach($post->reaction_counts as $reactionCount)
                 @if($reactionCount->isReacted())
-                <a class="badge badge-info badge-pill p-2 m-1" href="#">{{$reactionCount->stamp->name}} {{$reactionCount->reactions->count()}}</a>
+                <button class="reaction-counter reacted m-1 btn btn-info btn-sm" data-post-id="{{$post->id}}" data-stamp-id="{{$reactionCount->stamp->id}}">{{$reactionCount->stamp->name}} {{$reactionCount->reactions->count()}}</button>
                 @else
-                <a class="badge badge-light badge-pill p-2 m-1" href="#">{{$reactionCount->stamp->name}} {{$reactionCount->reactions->count()}}</a>
+                <button class="reaction-counter m-1 btn btn-light btn-sm" data-post-id="{{$post->id}}" data-stamp-id="{{$reactionCount->stamp->id}}">{{$reactionCount->stamp->name}} {{$reactionCount->reactions->count()}}</button>
                 @endif
             @endforeach
         </div>

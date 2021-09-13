@@ -6,7 +6,7 @@ use App\Http\Controllers\InputTemplateController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AppController;
-
+use App\Http\Controllers\ReactionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +39,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/apps/{appId}/topic-templates/{templateId}/inputs', [InputTemplateController::class, 'store'])->name('apps.topic-templates.inputs.store');
     Route::get('/apps/{appId}/topic-templates/{templateId}/inputs/create', [InputTemplateController::class, 'create'])->name('apps.topic-templates.inputs.create');
     Route::post('/apps', [AppController::class, 'store'])->name('apps.store');
+    Route::post('/apps/{appId}/topics/{topicId}/posts/{postId}/reactions', [ReactionController::class, 'store'])->name('apps.topics.posts.reactions.store');
+    Route::delete('/apps/{appId}/topics/{topicId}/posts/{postId}/reactions')->name('apps.topics.posts.reactions.delete');
 });
 Route::get('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'index'])->name('apps.topic-templates.index');
 
