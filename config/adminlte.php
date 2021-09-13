@@ -225,17 +225,17 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        [
+        // アプリバーの検索
+        /*[
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => true,
-            //'input_name' => 'keywrod'
-        ],
-        [
+            'input_name' => 'keywrod' // リクエスト時のnameになる?keyword=検索ワード
+        ],*/
+        /*[
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
-        ],
+        ],*/
 
         // 横メニューの検索
         /*[
