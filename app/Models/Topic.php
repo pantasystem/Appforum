@@ -55,4 +55,8 @@ class Topic extends Model
         return $this->hasMany(TopicReaction::class, 'topic_id');
     }
     
+    public function getReactionCountsAttribute()
+    {
+        return $this->reactions->groupBy('stamp_id');
+    }
 }

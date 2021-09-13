@@ -9,6 +9,7 @@ use App\Models\Topic;
 use App\Models\Content;
 use App\Models\Post;
 use App\Models\Stamp;
+use App\Models\PostReaction;
 
 class DatabaseSeeder extends Seeder
 {
@@ -55,5 +56,19 @@ class DatabaseSeeder extends Seeder
             });
         })->collapse();
         
+        // それぞれのPostにstamp * userな組み合わせのリアクションを挿入している
+        $posts->map(function($post) use ($stamps, $users){
+            $post->reactions()->saveMany(
+                $stamps->map(function($stamp) use ($post, $users){
+                    return $users->map(function($user) use ($stamp, $post){
+                        return new PostReaction([
+                            'post_id' => $post->id,
+                            'user_id' => $user->id
+                        ]);
+                    })->collapse();
+                    
+                })->collapse()
+            );
+        });
     }
 }

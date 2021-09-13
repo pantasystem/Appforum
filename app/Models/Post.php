@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Topic;
 use App\Models\User;
-use App\Model\PostReaction;
+use App\Models\PostReaction;
 
 
 class Post extends Model
@@ -58,5 +58,10 @@ class Post extends Model
     public function reactions()
     {
         return $this->hasMany(PostReaction::class, 'post_id');
+    }
+
+    public function getReactionCountsAttribute()
+    {
+        return $this->reactions->groupBy('stamp_id');
     }
 }
