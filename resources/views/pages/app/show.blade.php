@@ -35,7 +35,7 @@
     </div>
 -->
 <x-app-detail :app="$app">
-    <ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-top: 100px;">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">アプリ詳細</a>
             </li>
