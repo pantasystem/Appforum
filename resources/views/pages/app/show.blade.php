@@ -3,6 +3,12 @@
 @section('title', 'アプリ・サービス詳細')
 
 @section('content_header')
+<nav area-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ route('apps.index')}}">アプリ一覧</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$app->name}}</li>   
+    </ol>
+</nav>
 @stop
 
 @section('content')
