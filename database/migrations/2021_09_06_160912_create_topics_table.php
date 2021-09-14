@@ -21,6 +21,7 @@ class CreateTopicsTable extends Migration
             $table->unsignedBigInteger('app_id');
             $table->foreign('app_id')->references('id')->on('apps')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->collation = 'utf8mb4_bin';
         });
     }
 

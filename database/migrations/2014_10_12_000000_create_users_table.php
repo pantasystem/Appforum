@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('avatar_icon_path')->nullable();
+            $table->collation = 'utf8mb4_bin';
         });
     }
 

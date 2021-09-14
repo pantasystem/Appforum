@@ -22,6 +22,7 @@ class CreateAppsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('text')->nullable();
+            $table->collation = 'utf8mb4_bin';
         });
     }
 

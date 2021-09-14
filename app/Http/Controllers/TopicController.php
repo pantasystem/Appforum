@@ -10,6 +10,7 @@ use App\Models\Topic;
 use App\Models\Content;
 use DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Stamp;
 
 class TopicController extends Controller
 {
@@ -87,8 +88,9 @@ class TopicController extends Controller
     public function show($appId, $topicId)
     {
         $app = App::findOrFail($appId);
+        $stamps = Stamp::get();
         $topic = $app->topics()->with('contents', 'user')->findOrFail($topicId);
-        $posts = $topic->posts()->withCount('replies')->with('user')->whereNull('parent_id')->orderBy('id', 'asc')->get();
-        return view('pages.topic.show', compact('app', 'topic', 'posts'));
+        $posts = $topic->posts()->withCount('replies')->with('user','reactions')->whereNull('parent_id')->orderBy('id', 'asc')->get();
+        return view('pages.topic.show', compact('app', 'topic', 'posts', 'stamps'));
     }
 }

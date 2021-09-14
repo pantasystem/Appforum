@@ -9,7 +9,8 @@ use App\Models\Content;
 use App\Models\App;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\TopicReaction;
+use App\Models\ReactionCount;
 
 class Topic extends Model
 {
@@ -49,5 +50,25 @@ class Topic extends Model
     {
         return Auth::id() == $this->user_id;
     }
+
+    public function reactions()
+    {
+        return $this->hasMany(TopicReaction::class, 'topic_id');
+    }
     
+    public function getReactionCountsAttribute()
+    {
+        $nameAndStamp = [];
+        $nameAndReactions = [];
+        foreach($this->reactions as $reaction) {
+            $nameAndStamp[$reaction->stamp->name] = $reaction->stamp;
+            $reactions = $nameAndReaction[$reaction->stamp->name];
+            $reactions[] = $reaction;
+            $nameAndReaction[$reaction->stamp->name] = $reactions;
+        }
+        return collect($nameAndReactions)->map(function($reactions, $stampName) use ($nameAndStamp){
+            $stamp = $nameAndStamp[$stampName];
+            return new ReactionCount($stmp, $reactions);
+        });
+    }
 }
