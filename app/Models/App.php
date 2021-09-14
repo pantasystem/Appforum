@@ -16,7 +16,7 @@ class App extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'header_image_path', 'icon_path'];
+    protected $fillable = ['name', 'header_image_path', 'icon_path', 'text'];
 
     public function user() 
     {

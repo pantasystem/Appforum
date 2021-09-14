@@ -32,7 +32,7 @@
                 </div>
                 <div class="form-group">
                     <label for="topic-template-description">Appの説明</label>
-                    <textarea name="app-text" class="form-control @error('app-text') is-invalid @enderror" id="app-text">{{old('app-text')}}</textarea>
+                    <textarea name="text" class="form-control @error('text') is-invalid @enderror" id="app-text">{{old('text')}}</textarea>
                     @error('text')
                     <div class="invalid-feedback">
                         {{ $message }}
