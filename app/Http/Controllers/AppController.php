@@ -38,7 +38,7 @@ class AppController extends Controller
             $rules
         ); 
 
-        $app = new App($request->only('name'));
+        $app = new App($request->only('name', 'text'));
             
         $app->user()->associate(Auth::user());
 
