@@ -3,17 +3,21 @@
 @section('title', 'アプリ・サービス一覧')
 
 @section('content_header')
-    <h1>アプリ・サービス一覧</h1>
+<div class="d-flex align-items-center justify-content-between">
+    <div>
+        <h1>アプリ・サービス一覧</h1>
+    </div>
+    <div>
+        <a href="{{ route('apps.create') }}" class="btn btn-primary">アプリ作成</a>
+    </div>
+</div>
 @stop
 
 @section('content')
     <div>
-
-
-        <div class="container-fluid">
             <div class="row">
                 @foreach($apps as $app)
-                <div class="col-sm-6 col-md-4 col-xl-3 p-3">
+                <div class="col-sm-6 col-md-4 col-xl-3">
                     <div class="card">
 
                         <img src="{{$app->header_image_url}}" width="100%" height="150">
@@ -32,7 +36,6 @@
                 </div>
                 @endforeach
             </div>
-        </div>
 
     </div>
 @stop
