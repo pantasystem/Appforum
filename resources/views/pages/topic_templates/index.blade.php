@@ -6,7 +6,7 @@
 <nav area-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('apps.index')}}">アプリ一覧</a></li>
-        <li class="breadcrumb-item"><a href="{{route('apps.topic-templates.create', ['appId' => $app->id])}}">{{ $app->name}}</a></li>
+        <li class="breadcrumb-item"><a href="{{route('apps.topics.store', ['appId' => $app->id])}}">{{ $app->name}}</a></li>
         <li class="breadcrumb-item active" aria-current="page">
             @if($select) 
                 トピックテンプレート選択    

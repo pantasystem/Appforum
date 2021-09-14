@@ -3,6 +3,14 @@
 @section('title', 'トピック作成')
 
 @section('content_header')
+    <nav area-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('apps.index')}}">アプリ一覧</a></li>
+            <li class="breadcrumb-item"><a href="{{route('apps.topics.store', ['appId' => $app->id])}}">{{ $app->name}}</a></li>
+            <li class="breadcrumb-item"><a href="{{route('apps.topic-templates.index', ['appId' => $app->id])}}">トピックテンプレート選択</a></li>
+            <li class="breadcrumb-item active" aria-current="page">トピック作成</li>        
+        </ol>
+    </nav>
     <h1>トピック作成</h1>
 @stop
 
