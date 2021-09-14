@@ -7,6 +7,7 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ReactionController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,7 @@ Route::get('/apps', [App\Http\Controllers\AppController::class, 'index'])->name(
 Route::get('/apps/{app}/topics', [App\Http\Controllers\TopiclistContrller::class, 'index'])->name('apps.topic.index');
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::get('/profile', [UserController::class, 'show'])->name('profile.index');
     Route::get('/apps/create', [AppController::class, 'create'])->name('apps.create');
     Route::get('/apps/{appId}/topic-templates/create', [TopicTemplateController::class, 'create'])->name('apps.topic-templates.create');
     Route::post('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'store'])->name('apps.topic-templates.store');

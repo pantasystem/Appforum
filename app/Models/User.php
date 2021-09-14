@@ -10,6 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\App;
 use App\Models\Topic;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Config;
+
 
 class User extends Authenticatable
 {
@@ -59,4 +62,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class, 'user_id');
     }
+
+    public function getAvatarUrlAttribute()
+    {
+        if(Storage::disk('public')->exists($this->icon_path)){
+            return Config::get('apps.url') . Storage::url($this->icon_path);
+        }
+        return Config::get('apps.url') . '/assets/default_user_avatar_icon.png';
+    } 
 }
