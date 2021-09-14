@@ -5,8 +5,8 @@
 @section('content_header')
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">アプリ一覧</a></li>
-    <li class="breadcrumb-item"><a href="{{route('apps.topic-templates.create', ['appId' => $app->id])}}">{{ $app->name}}</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('apps.index')}}">アプリ一覧</a></li>
+    <li class="breadcrumb-item"><a href="{{route('apps.topics.store', ['appId' => $app->id])}}">{{ $app->name}}</a></li>
     <li class="breadcrumb-item"><a href="{{route('apps.topic-templates.index', ['appId' => $app->id ])}}">トピックテンプレート一覧</a></li>
     <li class="breadcrumb-item active" aria-current="page">トピックテンプレート作成</li>
   </ol>
