@@ -22,7 +22,7 @@
 
                         <img src="{{$app->header_image_url}}" width="100%" height="150">
                         <div class="row position-absolute ml-3" style="top: 100px">
-                            <img src="{{$app->icon_url}}" width="80" height="80" class="bg-white">
+                            <img src="{{$app->icon_url}}" class="bg-white" style="width:80px; height:80px; object-fit:cover;">
                             <h3 class="card-title h4 ml-1 mt-auto">{{$app->name}}</h3>
                         </div>
 
