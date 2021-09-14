@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/apps', [App\Http\Controllers\AppController::class, 'index'])->name('apps.index');
 
 
@@ -40,6 +39,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/apps/{appId}/topic-templates/{templateId}/inputs/create', [InputTemplateController::class, 'create'])->name('apps.topic-templates.inputs.create');
     Route::post('/apps', [AppController::class, 'store'])->name('apps.store');
     Route::post('/apps/{appId}/topics/{topicId}/posts/{postId}/reactions', [ReactionController::class, 'store'])->name('apps.topics.posts.reactions.store');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 });
 Route::get('/apps/{appId}/topic-templates', [TopicTemplateController::class, 'index'])->name('apps.topic-templates.index');
 
