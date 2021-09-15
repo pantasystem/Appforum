@@ -19,7 +19,7 @@ class AppController extends Controller
         // $apps = App::get();
 
 
-        $apps = App::with('user')->get();
+        $apps = App::with('user')->orderBy('id', 'desc')->get();
         
         //bladeテンプレートを呼び出し、データを渡す
         return view('pages.app.index',['apps'=>$apps]);
